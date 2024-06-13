@@ -62,7 +62,7 @@ const RoadMap = () => {
                   "Building first state-of-the-art mining facility.",
                   "Start Mining Operations.",
                   "Swap4Less - Swap at discounted rates (Users can buy coins we mine)",
-                  "Stake4More - For passive income stream rewards (USDT/USDC)",
+                  "Stake4More - Offers Higher discount levels and rewards.",
                 ]}
               />
               <div className="col-md-6 sm:tw-block tw-hidden"></div>

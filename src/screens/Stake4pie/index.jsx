@@ -18,9 +18,9 @@ const Stake4pie = () => {
               Stake 4 More
             </h1>
             <p className=" tw-text-white sm:tw-text-start tw-text-center  tw-leading-7 tw-pt-4 tw-text-xl">
-              By staking $EBM tokens, you can earn passive income through daily
-              automated distribution of 40-60% of the company's revenue. Just
-              connect your wallet to stake, review, or claim your rewards.
+            By staking $EBM tokens at Stake4More, like staking in native token rewards this will reward with higher discounts when using Swap4Less. Just connect your wallet to stake, know your discount levels, and claim your rewards.
+
+
             </p>
             <div className=" tw-flex sm:tw-justify-start tw-justify-center">
             <Button
