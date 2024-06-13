@@ -235,8 +235,8 @@ const Header = () => {
                       className="tw-text-black tw-flex tw-justify-between tw-items-center text-sm tw-py-2 tw-px-3"
                       to={"/buy4less"}
                     >
-                      <span className="  tw-text-sm">Buy4Less</span>
-                      <span className=" tw-text-sm">Comming Soon</span>
+                      <span className="  tw-text-sm">Swap4Less</span>
+                      <span className=" tw-text-sm"></span>
                     </Link>
                   </li>
                   <hr className=" tw-m-0" />
@@ -245,8 +245,8 @@ const Header = () => {
                       className="tw-text-black  tw-flex tw-justify-between tw-items-center text-sm tw-px-4 tw-py-2"
                       to={"/stake4pie"}
                     >
-                      <span className="  tw-text-sm">Stake4PIE</span>
-                      <span className=" tw-text-sm">Comming Soon</span>
+                      <span className="  tw-text-sm">Stake4More</span>
+                      <span className=" tw-text-sm"></span>
                     </Link>
                   </li>
                 </ul>
