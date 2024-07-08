@@ -7,10 +7,10 @@ import Team from '../../components/Team';
 import FAQ from '../../components/FAQ';
 import Tokenomics from '../../components/tokenomics';
 import RoadMap from '../../components/RoadMap';
-const Home = () => {
+const Home = (props) => {
   return (
     <div className=' tw-overflow-x-hidden'>
-      <Hero />
+      <Hero totalInvestment={props.totalInvestment} total_raised={props.total_raised} USDCBalance={props.USDCBalance}  NextStagePrice={props.NextStagePrice} test={props.test} MATICBalance={props.MATICBalance} EBMBalance={props.EBMBalance} USDTBalance={props.USDTBalance} curr_time={props.curr_time} curr_stage={props.curr_stage} curr_StageTime={props.curr_StageTime}  curr_presale={props.curr_presale} perTokenIn_Matic={props.perTokenIn_Matic}  />
     <div className=' tw-overflow-x-hidden'>
     <Brands/>
     </div>

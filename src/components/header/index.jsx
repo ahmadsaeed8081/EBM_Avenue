@@ -9,8 +9,14 @@ import Button from "../Button";
 import { MdMenu } from "react-icons/md";
 import { MdOutlineClose } from "react-icons/md";
 
+
+import { useWeb3Modal } from '@web3modal/wagmi/react'
+import { useAccount, useReadContract, useWriteContract } from "wagmi";
+import { useAccountEffect } from 'wagmi'
+
+
 const Header = () => {
-  const [open, setOpen] = useState(false);
+  const [open1, setOpen1] = useState(false);
   const [holdersDropdownOpen, setHoldersDropdownOpen] = useState(false);
 
   const navigate = useNavigate();
@@ -27,6 +33,12 @@ const Header = () => {
       }
     }, 0);
   };
+
+
+  const { open, close } = useWeb3Modal()
+  const { isConnected,isDisconnected,chain } = useAccount()
+  const { address } = useAccount();
+
 
   return (
     <nav className=" tw-top-0 tw-relative tw-z-20">
@@ -95,7 +107,7 @@ const Header = () => {
                 <li>
                   <Link
                     className="tw-text-black tw-flex tw-justify-between tw-items-center text-sm tw-py-2 tw-px-3"
-                    to={"/buy4less"}
+                    to={"/Swap4less"}
                   >
                     <span className="  tw-text-sm">Swap4Less</span>
                     <span className=" tw-text-sm"></span>
@@ -105,9 +117,9 @@ const Header = () => {
                 <li>
                   <Link
                     className="tw-text-black  tw-flex tw-justify-between tw-items-center text-sm tw-px-4 tw-py-2"
-                    to={"/stake4pie"}
+                    to={"/stake4More"}
                   >
-                    <span className="  tw-text-sm">Stake4More</span>
+                    <span className="tw-text-sm">Stake4More</span>
                     <span className=" tw-text-sm"></span>
                   </Link>
                 </li>
@@ -127,23 +139,25 @@ const Header = () => {
 
         <div className="md:tw-block tw-hidden">
           <Button
+
+            onClick={() => open()} 
             Icons={<FaRegUser color="white" />}
-            label={"Connect Wallet"}
+            label={!isConnected?("Connect Wallet"):(address.slice(0,4)+"...."+address.slice(39,42))}
           />
         </div>
 
         <div
           className="tw-text-3xl lg:tw-hidden tw-pt-2 tw-z-50"
-          onClick={() => setOpen(!open)}
+          onClick={() => setOpen1(!open1)}
         >
-          {open ? <MdOutlineClose color="white" /> : <MdMenu color="white" />}
+          {open1 ? <MdOutlineClose color="white" /> : <MdMenu color="white" />}
         </div>
 
         {/* Mobile nav */}
         <div
           className={`
             lg:tw-hidden   tw-bg-black  tw-bg-cover  tw-bg-Hero tw-fixed tw-w-full tw-top-0 tw-overflow-y-auto tw-bottom-0 tw-leading-10 tw-py-10 
-            tw-duration-500 ${open ? "tw-left-0" : "tw-left-[-100%]"}
+            tw-duration-500 ${open1 ? "tw-left-0" : "tw-left-[-100%]"}
           `}
         >
           <div className=" tw-absolute  tw-h-screen   tw-top-0 tw-right-0">
@@ -170,7 +184,7 @@ const Header = () => {
           <ul className="tw-p-0 tw-relative tw-px-9 tw-pt-3 tw-border-t">
             <li>
               <Link
-                onClick={() => setOpen(false)}
+                onClick={() => setOpen1(false)}
                 className={`${
                   isActive("/") ? " tw-text-[#2CBEF6]" : "tw-text-white"
                 }tw-text-white`}
@@ -184,7 +198,7 @@ const Header = () => {
                 to={"/"}
                 onClick={() => {
                   handleNavigate("/", "aboutSection");
-                  setOpen(false);
+                  setOpen1(false);
                 }}
                 className="tw-text-white"
               >
@@ -196,7 +210,7 @@ const Header = () => {
                 to={"/"}
                 onClick={() => {
                   handleNavigate("/", "tokenSection");
-                  setOpen(false);
+                  setOpen1(false);
                 }}
                 className="tw-text-white"
               >
@@ -208,7 +222,7 @@ const Header = () => {
                 to={"/"}
                 onClick={() => {
                   handleNavigate("/", "roadSection");
-                  setOpen(false);
+                  setOpen1(false);
                 }}
                 className="tw-text-white"
               >
@@ -233,7 +247,7 @@ const Header = () => {
                   <li>
                     <Link
                       className="tw-text-black tw-flex tw-justify-between tw-items-center text-sm tw-py-2 tw-px-3"
-                      to={"/buy4less"}
+                      to={"/Swap4less"}
                     >
                       <span className="  tw-text-sm">Swap4Less</span>
                       <span className=" tw-text-sm"></span>
@@ -243,7 +257,7 @@ const Header = () => {
                   <li>
                     <Link
                       className="tw-text-black  tw-flex tw-justify-between tw-items-center text-sm tw-px-4 tw-py-2"
-                      to={"/stake4pie"}
+                      to={"/stake4More"}
                     >
                       <span className="  tw-text-sm">Stake4More</span>
                       <span className=" tw-text-sm"></span>
@@ -258,7 +272,7 @@ const Header = () => {
                 onClick={() => {
                   handleNavigate("/", "teamSection");
 
-                  setOpen(false);
+                  setOpen1(false);
                 }}
                 className="tw-text-white"
               >
@@ -271,7 +285,7 @@ const Header = () => {
 
             className={''}
             Icons={<FaRegUser color="white" />}
-            label={"Connect Wallet"}
+            label={"Connect Wallet  "}
           />
             </li>
           </ul>

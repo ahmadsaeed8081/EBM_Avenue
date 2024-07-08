@@ -3,11 +3,53 @@ import Header from "../../components/header";
 import { FaArrowRight } from "react-icons/fa6";
 import Button from "../../components/Button";
 import Footer from "../../components/footer";
+import StakingCounter from "../../components/StakingCounter";
 import Tabs from "../../components/Tabs";
+import Web3 from "web3";
 
-const Staking = () => {
+import {
+  token_abi, 
+  ebm_address,
+  staking_address,
+  staking_abi,       
+} from "../../configs/Contracts";
+// import { useNetwork, useSwitchChain } from "wagmi";
+
+import { useSwitchChain, useAccount, useDisconnect } from "wagmi";
+// import {
+//   useContractReads,
+//   useContractRead,
+//   useContractWrite,
+//   usePrepareContractWrite,
+//   useWaitForTransaction,
+// } from "wagmi";
+import { useSimulateContract, useWriteContract } from 'wagmi'
+import { polygon, polygonAmoy } from "wagmi/chains";
+
+
+const Staking = (props) => {
+
+
+  const chainId = process.env.REACT_APP_ENV == "production" ? polygon.id : polygonAmoy.id;
+
+  const { switchChainAsync } = useSwitchChain();
+  const { chainId: currentChainId } = useAccount();
+  const { writeContractAsync,writeContract, ...states } = useWriteContract();
+
+  const { address, isConnecting ,isDisconnected} = useAccount()
+
+
+
+
+  const options = [{value:"0", title:"30 days", APR : "110%" }, {value:"1",title:"90 days", APR : "150%" }];
+  const options2 = ["0", "60", "2323"];
+  const options3 = ["7.78", "44.23", "3.54"];
+  const options4 = ["7.78", "44.23", "3.54"];
+
+
+
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(options[0]);
   const dropdownRef = useRef(null);
 
   const [isOpen2, setIsOpen2] = useState(false);
@@ -16,20 +58,17 @@ const Staking = () => {
 
 
   const [isOpen3, setIsOpen3] = useState(false);
-  const [selectedOption3, setSelectedOption3] = useState(null);
+  const [selectedOption3, setSelectedOption3] = useState([]);
   const dropdownRef3 = useRef(null);
 
 
 
   const [isOpen4, setIsOpen4] = useState(false);
-  const [selectedOption4, setSelectedOption4] = useState(null);
+  const [selectedOption4, setSelectedOption4] = useState([null]);
   const dropdownRef4 = useRef(null);
 
 
-  const options = ["150 days", "Option 2", "Option 3"];
-  const options2 = ["0", "60", "2323"];
-  const options3 = ["7.78", "44.23", "3.54"];
-  const options4 = ["7.78", "44.23", "3.54"];
+
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
@@ -106,7 +145,7 @@ const Staking = () => {
 
 
   const calculateTimeLeft = () => {
-    const difference = +new Date('2024-12-31T00:00:00') - +new Date();
+    const difference = Number(selectedOption3[1]) * 1000 - new Date();
     let timeLeft = {};
 
     if (difference > 0) {
@@ -133,6 +172,263 @@ const Staking = () => {
     return () => clearInterval(timer);
   }, []);
 
+
+
+  const APRList = [
+    { value: "0", lbl: "120 Days" ,APR: "0.05%"},
+    { value: "1", lbl: "240 Days"  ,APR: "0.08%"},
+    { value: "2", lbl: "365 Days" ,APR: "0.12%"},
+
+  ];
+
+const [ selectedAPR,set_selectedAPR] = useState(APRList[0])
+const [stakeAmount, setStakedAmount] = useState(0);
+
+
+const [choosed_Unstake_inv, set_choosed_Unstake_inv] = useState();
+const [allInvestments, set_investmentList] = useState([]);
+const [selectedAmount, setSelectedAmount] = useState([]);
+const [investmentList_reward, set_investmentList_reward] = useState([]);
+
+
+// const { chain } = useNetwork()
+
+// const { address, isConnecting ,isDisconnected} = useAccount()
+const networkId=137;
+
+useEffect(()=>{
+  // alert("huuh")
+
+if( props.allInvestments.length>0)
+{
+  // alert("huuh")
+    test1()
+    // count++;
+}
+},[address,props.allInvestments])
+
+  // function Convert_To_wei( val){
+  //   if(val==null || val==undefined || val=="")
+  //   return 
+
+  //   const web3= new Web3(new Web3.providers.HttpProvider("https://bsc.publicnode.com	"));
+  //   val= web3.utils.toWei(val.toString(),"ether");
+  //   return val;
+  
+  // }
+
+  // function Convert_To_eth( val){
+  //   if(val==null || val==undefined || val=="")
+  //   return 
+
+  //   const web3= new Web3(new Web3.providers.HttpProvider("https://bsc.publicnode.com	"));
+  //   val= web3.utils.fromWei(val.toString(),"ether");
+  //   return val;
+  
+  // }
+
+
+    function test1(){
+
+
+    console.log(props.allInvestments[0]);
+
+
+    set_investmentList(props.allInvestments);
+    setSelectedOption3(props.allInvestments[0]);
+    setSelectedOption4(props.allInvestments_reward[0]);
+
+    console.log(props.allInvestments[0])
+    set_investmentList_reward(props.allInvestments_reward)
+    set_choosed_Unstake_inv(props.allInvestments[0][3])
+
+    
+
+
+
+  }  
+
+  async function stake1() {
+    try {
+        const tx = await writeContractAsync({
+          abi: staking_abi,
+          address: staking_address,
+          functionName: "Stake", 
+          args: [
+            Convert_To_Wei(stakeAmount? Number(stakeAmount) : 0), selectedOption.value
+          ],
+
+        });
+
+
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+async function unstake1() {
+  try {
+      const tx = await writeContractAsync({
+        abi: staking_abi,
+        address: staking_address,
+        functionName: "unStake", 
+        args: [
+          Number(selectedOption3[3])
+        ],
+
+      });
+
+
+  } catch (err) {
+      console.error(err);
+  }
+}
+
+
+async function claim1() {
+  try {
+      const tx = await writeContractAsync({
+        abi: staking_abi,
+        address: staking_address,
+        functionName: "withdrawReward", 
+        // args: [
+        //   Number(selectedOption4[3])
+        // ],
+
+      });
+
+
+  } catch (err) {
+      console.error(err);
+  }
+}
+
+
+  async function EBM_approval () {
+    try {
+        const tx = await writeContractAsync({
+          abi: token_abi,
+          address: ebm_address,
+          args: [staking_address, stakeAmount ? Number(stakeAmount) * 10 ** 18 : "0"],
+          functionName: "approve",
+
+        }); 
+        stake1();
+  
+       } catch (err) {
+        console.error(err);
+    }
+  }
+
+
+
+
+
+
+
+  function Convert_To_eth(val) {
+    const web3 = new Web3(
+      new Web3.providers.HttpProvider("https://polygon.meowrpc.com")
+    );
+
+    val = web3.utils.fromWei(val.toString(), "ether");
+    return val;
+  }
+
+  function Convert_To_Wei(val) {
+    const web3 = new Web3(
+      new Web3.providers.HttpProvider("https://polygon.meowrpc.com")
+    );
+
+    val = web3.utils.toWei(val.toString(), "ether");
+    return val;
+  }
+
+
+
+  async function stake()
+  {
+
+    if(isDisconnected)
+    {
+      alert("kindly connect your wallet ");
+      return;
+    }
+
+    if(stakeAmount==0 )
+    {
+      alert("kindly write amount to stake ");
+      return;
+    }
+    if(Number(stakeAmount)<Number(props.min_stake)/10**18 )
+    {
+      alert("Minimum Stake amount is "+ Number(props.min_stake)/10**18);
+      return;
+    }
+
+
+    if(Number(props.EBMBalance)/10**18 < Number(stakeAmount))
+    {
+      alert("You don't have sufficient balance");
+      return;
+    }
+    if (chainId != currentChainId )
+    {
+      await switchChainAsync({ chainId });
+      await EBM_approval?.();
+    } 
+    else 
+    {
+      await EBM_approval?.();
+    }
+
+  }
+
+
+  async function unstake()
+  {
+    if(isDisconnected)
+    {
+      alert("kindly connect your wallet ");
+      return;
+    }
+
+    if (chainId != currentChainId )
+    {
+      await switchChainAsync({ chainId });
+      await unstake1?.();
+    } 
+    else 
+    {
+      await unstake1?.();
+    }
+    
+
+  }
+
+  async function claim()
+  {
+    if(isDisconnected)
+    {
+      alert("kindly connect your wallet ");
+      return;
+    }
+
+    if (chainId != currentChainId )
+    {
+      await switchChainAsync({ chainId });
+      await claim1?.();
+    } 
+    else 
+    {
+      await claim1?.();
+    }
+    
+
+  }
+
+
+
   const defaultTab = "Stake";
 
   const tabData = [
@@ -150,7 +446,7 @@ const Staking = () => {
 
             <div className="tw-flex p-4 tw-border-b tw-justify-between tw-items-center">
               <p className="tw-m-0 tw-text-white tw-font-semibold">APR:</p>
-              <p className="tw-m-0 tw-text-white">780% </p>
+              <p className="tw-m-0 tw-text-white">{selectedOption.APR} </p>
             </div>
 
             <div className="tw-flex-col tw-flex tw-justify-between tw-h-96 tw-p-6 tw-py-10">
@@ -164,7 +460,7 @@ const Staking = () => {
                     className="tw-border-[#2596EF] tw-flex tw-justify-between tw-border tw-w-full tw-text-white tw-py-5 tw-items-center tw-px-4 tw-rounded-md tw-text-[17.15px] tw-leading-3"
                   >
                     <p className="tw-m-0">
-                      {selectedOption || "Select an option"}
+                      {selectedOption.title || "Select an option"}
                     </p>
                     <p className="tw-m-0">
                       <img
@@ -174,13 +470,13 @@ const Staking = () => {
                   </button>
                   {isOpen && (
                     <ul className="tw-absolute tw-p-0 tw-z-20 tw-bg-[#141414] tw-text-black tw-shadow-md tw-rounded-md tw-mt-2 tw-w-full">
-                      {options.map((option) => (
+                      {options.map((item,index) => (
                         <li
-                          key={option}
-                          onClick={() => handleOptionClick(option)}
+                          key={item}
+                          onClick={() => handleOptionClick(item)}
                           className="tw-py-2 tw-px-4 tw-cursor-pointer tw-text-white hover:tw-bg-button-gradient"
                         >
-                          {option}
+                          {item.title}
                         </li>
                       ))}
                     </ul>
@@ -192,45 +488,43 @@ const Staking = () => {
                     <p className="tw-font-medium tw-text-white">
                       Select Amount:
                     </p>
-                    <p className="tw-text-white tw-text-sm">Balance: NaN PLP</p>
+                    <p className="tw-text-white tw-text-sm">Balance : {props.EBMBalance>0?(Number(props.EBMBalance)/10**18):0}  $EBM</p>
                   </div>
                   <div
                     className="tw-relative tw-w-full tw-inline-block"
                     ref={dropdownRef2}
                   >
-                    <button
-                      onClick={handleToggle2}
+                    <div
+                      // onClick={handleToggle2}
                       className="tw-border-[#2596EF] tw-flex tw-items-center tw-justify-between tw-border tw-w-full tw-text-white tw-py-3 tw-px-4 tw-rounded-md tw-text-[17.15px] tw-leading-3"
                     >
-                      <p className="tw-m-0">
-                        {selectedOption2 || "Select an option"}
-                      </p>
+                      <input  className=" tw-bg-transparent tw-w-full tw-px-3 tw-py-2 tw-text-white tw-outline-none" 
+                            type="number" 
+                            min={0}
+                            value={stakeAmount}
+                            max={props.EBMBalance>0?(Number(props.EBMBalance)/10**18):0}
+                            onChange={(e)=>setStakedAmount(e.target.value)}
+                        />
+                      
+                      
+                        {/* {selectedOption2 || "Select an option"} */}
+                      
                       <div className="tw-flex tw-items-center tw-gap-2">
-                        <p className="tw-text-sm tw-m-0">PLP</p>
-                        <button className="tw-bg-button-gradient tw-py-1.5 tw-px-1 tw-text-sm tw-rounded-md">
+                        <p className="tw-text-sm tw-m-0">$EBM</p>
+                        <button className="tw-bg-button-gradient tw-py-1.5 tw-px-1 tw-text-sm tw-rounded-md"
+                        onClick={(e)=>setStakedAmount(props.EBMBalance>0?(Number(props.EBMBalance)/10**18):0)}
+                        >
                           Max
                         </button>
                       </div>
-                    </button>
-                    {isOpen2 && (
-                      <ul className="tw-absolute tw-p-0 tw-bg-[#141414] tw-text-black tw-shadow-md tw-rounded-md tw-mt-2 tw-w-full">
-                        {options2.map((option) => (
-                          <li
-                            key={option}
-                            onClick={() => handleOption2Click(option)}
-                            className="tw-py-2 tw-px-4 tw-cursor-pointer tw-text-white hover:tw-bg-button-gradient"
-                          >
-                            {option}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
+                    </div>
+
                   </div>
                 </div>
               </div>
 
               <div>
-                <Button label={"Stake"} className={"tw-w-full"} />
+                <Button onClick={stake} label={"Stake"} className={"tw-w-full"} />
               </div>
             </div>
           </div>
@@ -250,8 +544,8 @@ const Staking = () => {
           </div>
 
           <div className="tw-flex p-4  tw-justify-between tw-items-center">
-            <p className="tw-m-0 tw-text-white tw-font-poppins tw-font-semibold">Total Stake</p>
-            <p className="tw-m-0  tw-font-zen-dots tw-text-white">$EBM 10000</p>
+            <p className="tw-m-0 tw-text-white tw-font-poppins tw-font-semibold">Penalty</p>
+            <p className="tw-m-0  tw-font-zen-dots tw-text-white">10%</p>
           </div>
 
           <div className="tw-flex-col tw-flex tw-justify-between tw-h-96 tw-p-6 tw-py-10">
@@ -267,7 +561,7 @@ const Staking = () => {
                     className="tw-border-[#2596EF] tw-flex tw-justify-between tw-border tw-w-full tw-text-white tw-py-5 tw-items-center tw-px-4 tw-rounded-md tw-text-[17.15px] tw-leading-3"
                   >
                     <p className="tw-m-0">
-                      {selectedOption3 || "Select an option"}
+                      {selectedOption3 ? Number(selectedOption3[0])/10**18:"Select an option"}
                     </p>
                     <p className="tw-m-0">
                       <img
@@ -277,57 +571,31 @@ const Staking = () => {
                   </button>
                   {isOpen3 && (
                     <ul className="tw-absolute tw-p-0 tw-z-20 tw-bg-[#141414] tw-text-black tw-shadow-md tw-rounded-md tw-mt-2 tw-w-full">
-                      {options3.map((option) => (
+                      
+                      {props.allInvestments.map((item,index) => (
                         <li
-                          key={option}
-                          onClick={() => handleOption3Click(option)}
+                          // key={index}
+                          onClick={() => {
+                            handleOption3Click(item);
+                            setSelectedAmount(item);
+                            // set_choosed_Unstake_inv(Number(item[index][3]));
+                          
+                          }}
                           className="tw-py-2 tw-px-4 tw-cursor-pointer tw-text-white hover:tw-bg-button-gradient"
                         >
-                          {option}
+                          {Number(item[0])/10**18}
                         </li>
                       ))}
                     </ul>
                   )}
                 </div>
            </div>
+                          <StakingCounter time={selectedOption3 ? Number(selectedOption3[1]):0}
+ />
 
-           <div className=" tw-pt-2.5 tw-flex  tw-gap-2  tw-justify-end">
-            <div className=" tw-flex tw-gap-1">
-              <div className="  tw-gap-1   tw-w-7 tw-justify-center  tw-rounded-sm tw-flex tw-items-center tw-bg-button-gradient">
-                <p className=" tw-m-0 tw-text-sm">{String(timeLeft.days).padStart(2, '0')}</p>
-              </div>
-
-              <p className=" tw-m-0 tw-text-sm tw-text-white">Days</p>
-
-            </div>
-            <div className=" tw-flex tw-gap-1">
-              <div className="  tw-gap-1   tw-w-6  tw-justify-center  tw-rounded-sm tw-flex tw-items-center tw-bg-button-gradient">
-                <p className=" tw-m-0">{String(timeLeft.hours).padStart(2, '0')}</p>
-              </div>
-
-              <p className=" tw-m-0 tw-text-sm tw-text-white">Hours</p>
-
-            </div>
-            <div className=" tw-flex tw-gap-1">
-              <div className="  tw-gap-1   tw-w-6  tw-justify-center  tw-rounded-sm tw-flex tw-items-center tw-bg-button-gradient">
-                <p className=" tw-m-0">{String(timeLeft.minutes).padStart(2, '0')}</p>
-              </div>
-
-              <p className=" tw-m-0 tw-text-sm tw-text-white">Minutes</p>
-
-            </div>
-            <div className=" tw-flex tw-gap-1">
-              <div className="  tw-gap-1   tw-w-6  tw-justify-center  tw-rounded-sm tw-flex tw-items-center tw-bg-button-gradient">
-                <p className=" tw-m-0">   {String(timeLeft.seconds).padStart(2, '0')}</p>
-              </div>
-
-              <p className=" tw-m-0 tw-text-sm tw-text-white">Second</p>
-
-            </div>
-           </div>
              </div>
             <div>
-              <Button label={"Unstake"} className={"tw-w-full"} />
+              <Button onClick={unstake} label={"Unstake"} className={"tw-w-full"} />
             </div>
           </div>
         </div>
@@ -348,13 +616,13 @@ const Staking = () => {
 
           <div className="tw-flex px-4   tw-justify-between tw-items-center">
             <p className="tw-m-0 tw-font-poppins tw-text-sm tw-text-white">Total Earning</p>
-            <p className="tw-m-0 tw-font-poppins tw-text-sm tw-text-white">128.455454</p>
+            <p className="tw-m-0 tw-font-poppins tw-text-sm tw-text-white">{props.totalEarning? (Number(props.totalEarning)/10**18).toFixed(2) + (Number(props.totalwithdraw)/10**18).toFixed(2):0}</p>
           </div>
 
 
           <div className="tw-flex px-4  tw-pt-1 tw-justify-between tw-items-center">
-            <p className="tw-m-0 tw-font-poppins tw-text-sm tw-text-white">Total Earning</p>
-            <p className="tw-m-0 tw-font-poppins tw-text-sm tw-text-white">128.455454</p>
+            <p className="tw-m-0 tw-font-poppins tw-text-sm tw-text-white">Total withdrawn</p>
+            <p className="tw-m-0 tw-font-poppins tw-text-sm tw-text-white">{props.totalwithdraw? (Number(props.totalwithdraw)/10**18).toFixed(2):0}</p>
           </div>
 
           <div className="tw-flex-col  tw-flex tw-justify-between tw-h-96 tw-p-6 tw-py-10">
@@ -370,7 +638,7 @@ const Staking = () => {
                     className="tw-border-[#2596EF] tw-flex tw-justify-between tw-border tw-w-full tw-text-white tw-py-5 tw-items-center tw-px-4 tw-rounded-md tw-text-[17.15px] tw-leading-3"
                   >
                     <p className="tw-m-0">
-                      {selectedOption4 || "Select an option"}
+                    {selectedOption4 ? Number(selectedOption4[0])/10**18:"Select an option"}
                     </p>
                     <p className="tw-m-0">
                       <img
@@ -380,13 +648,14 @@ const Staking = () => {
                   </button>
                   {isOpen4 && (
                     <ul className="tw-absolute tw-p-0 tw-z-20 tw-bg-[#141414] tw-text-black tw-shadow-md tw-rounded-md tw-mt-2 tw-w-full">
-                      {options4.map((option) => (
+                      {props.allInvestments_reward.map((item,index) => (
                         <li
-                          key={option}
-                          onClick={() => handleOption4Click(option)}
+                          key={index}
+                          onClick={() => handleOption4Click(item)}
                           className="tw-py-2 tw-px-4 tw-cursor-pointer tw-text-white hover:tw-bg-button-gradient"
                         >
-                          {option}
+                          {Number(item[0])/10**18}
+
                         </li>
                       ))}
                     </ul>
@@ -394,17 +663,18 @@ const Staking = () => {
                 </div>
            </div>
            <div className="tw-flex  tw-pt-7   tw-justify-between tw-items-center">
-            <p className="tw-m-0 tw-font-poppins tw-text-sm tw-text-white">Total Earn Reward</p>
-            <p className="tw-m-0 tw-font-poppins tw-text-sm tw-text-[#00F0FF]">128.455454</p>
+            <p className="tw-m-0 tw-font-poppins tw-text-sm tw-text-white">Earned Reward</p>
+            <p className="tw-m-0 tw-font-poppins tw-text-sm tw-text-[#00F0FF]">{selectedOption4 ? Number(selectedOption4[6])/10**18:0}
+</p>
           </div>
           <div className="tw-flex   tw-justify-between tw-items-center">
-            <p className="tw-m-0 tw-font-poppins tw-text-sm tw-text-white">Earning Reward</p>
-            <p className="tw-m-0 tw-font-poppins tw-text-sm tw-text-[#00F0FF]">128.455454</p>
+            <p className="tw-m-0 tw-font-poppins tw-text-sm tw-text-white">Pending Reward</p>
+            <p className="tw-m-0 tw-font-poppins tw-text-sm tw-text-[#00F0FF]">{selectedOption4 ? Number(selectedOption4[9])/10**18:0}</p>
           </div>
            
              </div>
             <div>
-              <Button label={"Claim"} className={"tw-w-full"} />
+              <Button onClick={claim} label={"Claim"} className={"tw-w-full"} />
             </div>
           </div>
         </div>

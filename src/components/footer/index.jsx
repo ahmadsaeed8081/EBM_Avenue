@@ -10,7 +10,7 @@ const Footer = () => {
             <div className="col-md-6  md:tw-text-start  tw-text-center">
               <img src={require("../../assets/images/footer_logo.png")} className="tw-mx-auto md:tw-mx-0" />
               <p className=" tw-text-xl tw-text-white tw-pt-6">
-                0x33E4d3163e66B46bAb  C0faF8B30C6c36DD4Ab9E9
+              0xeaC39580973ca566b455E5eD8e815606EA21f104
               </p>
             </div>
             <div className="col-md-6">
@@ -21,7 +21,7 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to={'https://discord.com/invite/yuaA8rDJ'}>
+                  <Link to={'#'}>
                     <img src={require("../../assets/images/bbb.png")} />
                   </Link>
                 </li>
