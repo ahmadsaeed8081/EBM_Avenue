@@ -282,10 +282,11 @@ const Header = () => {
 
             <li className=" tw-pt-5">
             <Button  
+            onClick={() => open()} 
 
             className={''}
             Icons={<FaRegUser color="white" />}
-            label={"Connect Wallet  "}
+            label={!isConnected?("Connect Wallet"):(address.slice(0,4)+"...."+address.slice(39,42))}
           />
             </li>
           </ul>
