@@ -16,6 +16,7 @@ import {
   presale_abi,
 } from "../../configs/Contracts";
 // import { useNetwork, useSwitchChain } from "wagmi";
+import { useWeb3Modal } from '@web3modal/wagmi/react'
 
 import { useSwitchChain, useAccount, useDisconnect } from "wagmi";
 // import {
@@ -37,6 +38,7 @@ const Hero = (props) => {
   const [payAmount, set_payAmount] = useState(0);
   const [receiveAmount, set_receiveAmount] = useState(0);
   const [option, set_option] = useState("0");
+  const { open, close } = useWeb3Modal()
 
 
   // const { chain } = useNetwork()
@@ -593,7 +595,20 @@ const { address, isConnecting ,isDisconnected} = useAccount()
                         0 $EBM
                       </p>
                     </div>
-                    <div className=" tw-flex tw-gap-3 tw-pt-2">
+                    {isDisconnected?
+                    (
+                      <div className=" tw-flex tw-gap-3 tw-pt-2">
+                      <Button
+                      onClick={open}
+                        label={"Connect Wallet"}
+                        className={"  tw-py-1 tw-w-full"}
+                      />
+                      
+                    </div>
+
+                    ):(
+
+                      <div className=" tw-flex tw-gap-3 tw-pt-2">
                       <Button
                       onClick={()=>buy_token("0")}
                         label={"Buy Now"}
@@ -605,6 +620,23 @@ const { address, isConnecting ,isDisconnected} = useAccount()
                         className={"  tw-py-1 tw-w-full"}
                       />
                     </div>
+
+
+                    )
+                    
+                  }
+                    {/* <div className=" tw-flex tw-gap-3 tw-pt-2">
+                      <Button
+                      onClick={()=>buy_token("0")}
+                        label={"Buy Now"}
+                        className={"  tw-py-1 tw-w-full"}
+                      />
+                      <Button
+                        onClick={()=>buy_token("1")}
+                        label={"Buy & Stake"}
+                        className={"  tw-py-1 tw-w-full"}
+                      />
+                    </div> */}
 
                     <div className=" tw-text-center  tw-pt-8">
                       <h1 className=" tw-text-white  tw-font-poppins tw-font-semibold tw-text-sm">

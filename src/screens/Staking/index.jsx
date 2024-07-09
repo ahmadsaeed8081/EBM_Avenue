@@ -14,6 +14,7 @@ import {
   staking_abi,       
 } from "../../configs/Contracts";
 // import { useNetwork, useSwitchChain } from "wagmi";
+import { useWeb3Modal } from '@web3modal/wagmi/react'
 
 import { useSwitchChain, useAccount, useDisconnect } from "wagmi";
 // import {
@@ -61,6 +62,7 @@ const Staking = (props) => {
   const [selectedOption3, setSelectedOption3] = useState([]);
   const dropdownRef3 = useRef(null);
 
+  const { open, close } = useWeb3Modal()
 
 
   const [isOpen4, setIsOpen4] = useState(false);
@@ -524,7 +526,15 @@ async function claim1() {
               </div>
 
               <div>
+                {isDisconnected?
+
+                <Button onClick={open} label={"Connect Wallet"} className={"tw-w-full"} />
+                :                
                 <Button onClick={stake} label={"Stake"} className={"tw-w-full"} />
+
+
+              }
+                {/* <Button onClick={stake} label={"Stake"} className={"tw-w-full"} /> */}
               </div>
             </div>
           </div>
@@ -595,7 +605,15 @@ async function claim1() {
 
              </div>
             <div>
-              <Button onClick={unstake} label={"Unstake"} className={"tw-w-full"} />
+
+            {isDisconnected?
+
+                  <Button onClick={open} label={"Connect Wallet"} className={"tw-w-full"} />
+                  :                
+                  <Button onClick={unstake} label={"Unstake"} className={"tw-w-full"} />
+
+
+                  }
             </div>
           </div>
         </div>
@@ -674,7 +692,14 @@ async function claim1() {
            
              </div>
             <div>
+            {isDisconnected?
+
+              <Button onClick={open} label={"Connect Wallet"} className={"tw-w-full"} />
+              :                
               <Button onClick={claim} label={"Claim"} className={"tw-w-full"} />
+
+
+              }
             </div>
           </div>
         </div>
