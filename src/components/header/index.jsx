@@ -138,12 +138,12 @@ const Header = () => {
         </ul>
 
         <div className="md:tw-block tw-hidden">
-          {/* <Button
+          <Button
 
             onClick={() => open()} 
             Icons={<FaRegUser color="white" />}
             label={!isConnected?("Connect Wallet"):(address.slice(0,4)+"...."+address.slice(39,42))}
-          /> */}
+          />
         </div>
 
         <div
@@ -280,7 +280,7 @@ const Header = () => {
               </Link>
             </li>
 
-            {/* <li className=" tw-pt-5">
+            <li className=" tw-pt-5">
             <Button  
             onClick={() => open()} 
 
@@ -288,7 +288,7 @@ const Header = () => {
             Icons={<FaRegUser color="white" />}
             label={!isConnected?("Connect Wallet"):(address.slice(0,4)+"...."+address.slice(39,42))}
           />
-            </li> */}
+            </li>
           </ul>
           
         </div>
