@@ -11,6 +11,7 @@ const metadata = {
     description: "",
     url: "https://ebmavenue.io/",
     icons: ["https://ebmavenue.io/"]
+    
 };
 
 export const config = defaultWagmiConfig({
@@ -21,5 +22,6 @@ export const config = defaultWagmiConfig({
 
 createWeb3Modal({
     wagmiConfig: config,
-    projectId
+    projectId,
+
 });

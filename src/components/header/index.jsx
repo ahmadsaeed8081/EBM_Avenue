@@ -10,7 +10,7 @@ import { MdMenu } from "react-icons/md";
 import { MdOutlineClose } from "react-icons/md";
 
 
-import { useWeb3Modal } from '@web3modal/wagmi/react'
+import { useWeb3Modal,useWeb3ModalTheme,use } from '@web3modal/wagmi/react'
 import { useAccount, useReadContract, useWriteContract } from "wagmi";
 import { useAccountEffect } from 'wagmi'
 
@@ -38,6 +38,8 @@ const Header = () => {
   const { open, close } = useWeb3Modal()
   const { isConnected,isDisconnected,chain } = useAccount()
   const { address } = useAccount();
+
+
 
 
   return (

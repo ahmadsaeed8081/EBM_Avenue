@@ -135,8 +135,8 @@ useEffect(()=>{
     let perTokenIn_Matic = await presale_contract.methods.get_MaticPrice().call();    
 
     // let curr_timePresale = await presale_contract.methods.curr_time().call();  
-    // let totalraised = await presale_contract.methods.total_raised().call();    
-    let totalraised;
+    let totalraised = await presale_contract.methods.total_raised().call();    
+    // let totalraised;
     let curr_presale = await presale_contract.methods.presale(Number(curr_stage)).call(); 
 
     let NextStage;

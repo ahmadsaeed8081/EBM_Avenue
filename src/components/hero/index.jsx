@@ -414,7 +414,7 @@ const { address, isConnecting ,isDisconnected} = useAccount()
 
                     <div className="  tw-text-center tw-py-4">
                       <p className=" tw-font-poppins tw-m-0 tw-text-white">
-                        $0 / $0
+                      Total Raised : ${props.total_raised ? (Number(props.total_raised)/10**6).toFixed(2):0}
                       </p>
                       <div className=" tw-flex tw-justify-between tw-items-center">
                         <p className=" tw-m-0 text-xl tw-font-poppins gradient-text">
@@ -431,7 +431,7 @@ const { address, isConnecting ,isDisconnected} = useAccount()
 
                         </p>
                         <p className=" tw-m-0 text-xl  tw-font-poppins tw-text-white">
-                        {props.curr_presale.supply? (Number(props.curr_presale.supply) / 10 ** 18) - (Number(props.curr_presale.total_sold) / 10 ** 18): 0}
+                        {props.curr_presale.supply? ((Number(props.curr_presale.supply) / 10 ** 18) - (Number(props.curr_presale.total_sold) / 10 ** 18)).toFixed(2): 0}
 
                         </p>
                       </div>
@@ -457,12 +457,12 @@ const { address, isConnecting ,isDisconnected} = useAccount()
                     <div className="  tw-text-center tw-pb-4 tw-pt-0">
                       <p className=" tw-font-poppins tw-m-0 tw-text-white">
                         Your Purchased $EBM = {Number(props.EBMBalance)
-                          ? Number(props.EBMBalance) / 10 ** 18
+                          ? (Number(props.EBMBalance) / 10 ** 18).toFixed(2)
                           : ""}  
                       </p>
                       <p className=" tw-font-poppins tw-m-0 tw-text-white">
                         Your Stakeable $EBM = {Number(props.totalInvestment)
-                          ? Number(props.totalInvestment) / 10 ** 18
+                          ?(Number(props.totalInvestment) / 10 ** 18).toFixed(2)
                           : ""}  
                       </p>
                     </div>
