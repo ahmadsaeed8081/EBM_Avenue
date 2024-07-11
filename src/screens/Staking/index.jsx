@@ -688,12 +688,12 @@ useEffect(()=>{
            </div>
            <div className="tw-flex  tw-pt-7   tw-justify-between tw-items-center">
             <p className="tw-m-0 tw-font-poppins tw-text-sm tw-text-white">Earned Reward</p>
-            <p className="tw-m-0 tw-font-poppins tw-text-sm tw-text-[#00F0FF]">{selectedOption4 ? Number(selectedOption4[6])/10**18:0}
+            <p className="tw-m-0 tw-font-poppins tw-text-sm tw-text-[#00F0FF]">{selectedOption4 ? (Number(selectedOption4[6])/10**18).toFixed(2):0}
 </p>
           </div>
           <div className="tw-flex   tw-justify-between tw-items-center">
             <p className="tw-m-0 tw-font-poppins tw-text-sm tw-text-white">Pending Reward</p>
-            <p className="tw-m-0 tw-font-poppins tw-text-sm tw-text-[#00F0FF]">{selectedOption4 ? Number(selectedOption4[9])/10**18:0}</p>
+            <p className="tw-m-0 tw-font-poppins tw-text-sm tw-text-[#00F0FF]">{selectedOption4 ? (Number(selectedOption4[9])/10**18).toFixed(2):0}</p>
           </div>
            
              </div>
