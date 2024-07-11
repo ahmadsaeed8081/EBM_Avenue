@@ -37,8 +37,11 @@ const Hero = (props) => {
 
   const [payAmount, set_payAmount] = useState(0);
   const [receiveAmount, set_receiveAmount] = useState(0);
+  const [rewardAmount, set_rewardAmount] = useState(0);
+
   const [option, set_option] = useState("0");
   const { open, close } = useWeb3Modal()
+  const [selectedButton, setSelectedButton] = useState(null);
 
   const [count, set_count] = useState(0);
 
@@ -57,7 +60,7 @@ const { address, isConnecting ,isDisconnected} = useAccount()
     {
       onPay(payAmount)
     }
-  },[selectedCurrency])
+  },[selectedCurrency,selectedButton])
 
   const getBorderColor = (currency) => {
     return selectedCurrency === currency
@@ -65,7 +68,6 @@ const { address, isConnecting ,isDisconnected} = useAccount()
       : "tw-border-transparent";
   };
 
-  const [selectedButton, setSelectedButton] = useState(null);
 
   const handleBSelect = (button) => {
     setSelectedButton(button);
@@ -200,6 +202,15 @@ const { address, isConnecting ,isDisconnected} = useAccount()
     let temp = value.div(dec_price);
 
     set_receiveAmount(Number(temp).toFixed(2));
+    if(selectedButton == "1 Month")
+    {
+      set_rewardAmount((Number(temp)+ (Number(temp)*4/100)).toFixed(2))
+
+    }
+    else{
+      set_rewardAmount((Number(temp)+ (Number(temp)*15/100)).toFixed(2))
+
+    }
   }
 
   function onRecieve(value) {
@@ -220,6 +231,15 @@ const { address, isConnecting ,isDisconnected} = useAccount()
     let temp = dec_price.times(value);
 
     set_payAmount(Number(temp).toFixed(2));
+    if(selectedButton == "1 Month")
+    {
+      set_rewardAmount((Number(value)+ (Number(value)*4/100)).toFixed(2))
+
+    }
+    else{
+      set_rewardAmount((Number(value)+ (Number(value)*15/100)).toFixed(2))
+
+    }
   }
 
   async function buy_token(choosed_option) {
@@ -592,7 +612,7 @@ const { address, isConnecting ,isDisconnected} = useAccount()
                     </div>
                     <div className=" tw-flex tw-items-center tw-justify-between tw-py-5">
                       <p className=" tw-m-0 tw-text-white  sm:tw-text-base tw-text-sm tw-font-poppins">
-                        Choose After Period
+                        Choose Staking Period
                       </p>
 
                       <div className=" tw-flex tw-gap-3">
@@ -604,7 +624,7 @@ const { address, isConnecting ,isDisconnected} = useAccount()
                         >
                           1 Month{" "}
                           <span className=" text-xs tw-bg-button-gradient  tw-text-[9px] tw-rounded-md tw-text-white tw-py-1 tw-px-2 ">
-                            0.5%
+                            40%
                           </span>{" "}
                         </button>
                         <button
@@ -615,7 +635,7 @@ const { address, isConnecting ,isDisconnected} = useAccount()
                         >
                           3 Month{" "}
                           <span className=" text-xs tw-bg-button-gradient  tw-text-[9px] tw-rounded-md tw-text-white tw-py-1 tw-px-2 ">
-                            0.5%
+                            60%
                           </span>{" "}
                         </button>
                       </div>
@@ -623,10 +643,10 @@ const { address, isConnecting ,isDisconnected} = useAccount()
 
                     <div className=" tw-flex tw-justify-between tw-items-center">
                       <p className=" tw-m-0 tw-font-poppins sm:tw-text-base tw-text-md tw-text-white">
-                        Token After Staking:
+                        Token After Staking Period:
                       </p>
                       <p className=" tw-m-0 tw-text-white tw-font-poppins">
-                        0 $EBM
+                      {Number(rewardAmount)} $EBM
                       </p>
                     </div>
                     {isDisconnected?
@@ -675,9 +695,9 @@ const { address, isConnecting ,isDisconnected} = useAccount()
                     <div className=" tw-text-center  tw-pt-8">
                       <h1 className=" tw-text-white  tw-font-poppins tw-font-semibold tw-text-sm">
                         Launch On
-                        <span className="gradient-text">UniSwap</span>
+                        <span className="gradient-text"> UniSwap </span>
                         And
-                        <span className="gradient-text">QuickSwap</span>
+                        <span className="gradient-text"> QuickSwap </span>
                         Soon
                       </h1>
                     </div>

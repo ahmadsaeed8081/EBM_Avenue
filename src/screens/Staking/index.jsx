@@ -42,10 +42,8 @@ const Staking = (props) => {
 
 
 
-  const options = [{value:"0", title:"30 days", APR : "110%" }, {value:"1",title:"90 days", APR : "150%" }];
-  const options2 = ["0", "60", "2323"];
-  const options3 = ["7.78", "44.23", "3.54"];
-  const options4 = ["7.78", "44.23", "3.54"];
+  const options = [{value:"0", title:"30 days", APR : "40%" }, {value:"1",title:"90 days", APR : "60%" }];
+
 
 
 

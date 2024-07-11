@@ -4,7 +4,7 @@ export const usdt_address="0x341343568948459e5b7017eDDb05110cfA3EF699";
 export const usdc_address="0x341343568948459e5b7017eDDb05110cfA3EF699";
 
 export const presale_address="0x86F1eC984f25DaFC7855054f80db3AaDd890d0D1";
-export const staking_address="0x99ebc6fda4caB2C3622D894C35FB03AAd7Ee6f06";
+export const staking_address="0x741a39f8e83D26f4e143E8A2daE4Cf4c0cBc1443";
 
 
 export const staking_abi=[
