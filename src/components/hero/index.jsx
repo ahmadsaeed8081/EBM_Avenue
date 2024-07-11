@@ -48,7 +48,16 @@ const { address, isConnecting ,isDisconnected} = useAccount()
 
   const handleSelect = (currency) => {
     setSelectedCurrency(currency);
+
+
   };
+
+  useEffect(()=>{
+    if(payAmount!="")
+    {
+      onPay(payAmount)
+    }
+  },[selectedCurrency])
 
   const getBorderColor = (currency) => {
     return selectedCurrency === currency
@@ -461,7 +470,7 @@ const { address, isConnecting ,isDisconnected} = useAccount()
                           : ""}  
                       </p>
                       <p className=" tw-font-poppins tw-m-0 tw-text-white">
-                        Your Stakeable $EBM = {Number(props.totalInvestment)
+                        Your Staked $EBM = {Number(props.totalInvestment)
                           ?(Number(props.totalInvestment) / 10 ** 18).toFixed(2)
                           : ""}  
                       </p>
