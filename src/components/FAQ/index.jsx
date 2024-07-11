@@ -40,7 +40,7 @@ const FAQ = () => {
         {
           key: 6,
           title: "6. What are $EBM presale security measures? ",
-          data: "Tokens bought through presale are not transferable and tradable until listed for trading officially. Tokens allocated for our operations, marketing, teams and advisors are locked with linear vesting for periods from 2- 5 years.",
+          data: <p>Tokens bought through presale are not transferable and tradable until listed for trading officially. Tokens allocated for our operations, marketing, teams and advisors are locked with linear vesting for periods from 2- 5 years can be viewed  <a href="https://app.unvest.io/projects/137/0xeac39580973ca566b455e5ed8e815606ea21f104/locks" target="_blank"> here.</a></p>,
           isOpen: false,
         },
         {

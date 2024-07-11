@@ -26,7 +26,7 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to={'https://t.me/+9FfF7v_hUbNmZWQ8'} >
+                  <Link to={'https://t.me/ebmavenue'} >
                     <img src={require("../../assets/images/email.png")} />
                   </Link>
                 </li>

@@ -24,7 +24,7 @@ import { useSwitchChain, useAccount, useDisconnect } from "wagmi";
 //   usePrepareContractWrite,
 //   useWaitForTransaction,
 // } from "wagmi";
-import { useSimulateContract, useWriteContract } from 'wagmi'
+import { useSimulateContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 import { polygon, polygonAmoy } from "wagmi/chains";
 
 
@@ -35,7 +35,7 @@ const Staking = (props) => {
 
   const { switchChainAsync } = useSwitchChain();
   const { chainId: currentChainId } = useAccount();
-  const { writeContractAsync,writeContract, ...states } = useWriteContract();
+  const { writeContractAsync,writeContract,data:hash, ...states } = useWriteContract();
 
   const { address, isConnecting ,isDisconnected} = useAccount()
 
@@ -61,6 +61,7 @@ const Staking = (props) => {
   const [isOpen3, setIsOpen3] = useState(false);
   const [selectedOption3, setSelectedOption3] = useState([]);
   const dropdownRef3 = useRef(null);
+  const [count, set_count] = useState(0);
 
   const { open, close } = useWeb3Modal()
 
@@ -193,41 +194,24 @@ const [selectedAmount, setSelectedAmount] = useState([]);
 const [investmentList_reward, set_investmentList_reward] = useState([]);
 
 
-// const { chain } = useNetwork()
-
-// const { address, isConnecting ,isDisconnected} = useAccount()
-const networkId=137;
 
 useEffect(()=>{
-  // alert("huuh")
 
 if( props.allInvestments.length>0)
 {
-  // alert("huuh")
     test1()
-    // count++;
 }
 },[address,props.allInvestments])
 
-  // function Convert_To_wei( val){
-  //   if(val==null || val==undefined || val=="")
-  //   return 
 
-  //   const web3= new Web3(new Web3.providers.HttpProvider("https://bsc.publicnode.com	"));
-  //   val= web3.utils.toWei(val.toString(),"ether");
-  //   return val;
-  
-  // }
 
-  // function Convert_To_eth( val){
-  //   if(val==null || val==undefined || val=="")
-  //   return 
+const { isLoading: isConfirming, isSuccess: isConfirmed} =
+useWaitForTransactionReceipt({
+  hash,
+})
 
-  //   const web3= new Web3(new Web3.providers.HttpProvider("https://bsc.publicnode.com	"));
-  //   val= web3.utils.fromWei(val.toString(),"ether");
-  //   return val;
-  
-  // }
+
+
 
 
     function test1(){
@@ -262,6 +246,7 @@ if( props.allInvestments.length>0)
 
         });
 
+        set_count(1)
 
     } catch (err) {
         console.error(err);
@@ -280,6 +265,7 @@ async function unstake1() {
 
       });
 
+      set_count(1)
 
   } catch (err) {
       console.error(err);
@@ -299,6 +285,7 @@ async function claim1() {
 
       });
 
+      set_count(1)
 
   } catch (err) {
       console.error(err);
@@ -306,16 +293,35 @@ async function claim1() {
 }
 
 
+useEffect(()=>{
+  if(isConfirmed)
+  {
+    if(count==0)
+    {
+      // alert("ninkn")
+      stake1()
+
+    }
+    if(count==1)
+    {
+      set_count(0)
+
+    }
+  }
+
+
+},[isConfirmed])
+
   async function EBM_approval () {
     try {
         const tx = await writeContractAsync({
           abi: token_abi,
           address: ebm_address,
-          args: [staking_address, stakeAmount ? Number(stakeAmount) * 10 ** 18 : "0"],
+          args: [staking_address,Convert_To_Wei( stakeAmount ? Number(stakeAmount) : "0")],
           functionName: "approve",
 
         }); 
-        stake1();
+        // stake1();
   
        } catch (err) {
         console.error(err);

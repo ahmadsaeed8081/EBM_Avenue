@@ -34,11 +34,11 @@ const TokenUtility = () => {
           <div className="col-md-8 sm:tw-order-2 tw-order-1 p-0">
             <div className=" tw-px-10">
               <div className="tw-bg-[#141414] sm:tw-text-start tw-text-center tw-px-5  tw-py-8 tw-rounded-lg sm:tw-flex tw-block tw-items-center tw-gap-4">
-                <h1 className="tw-text-white sm:tw-text-[40px] tw-text-[30px] gradient-text">Payment</h1>
+                <h1 className="tw-text-white sm:tw-text-[40px] tw-text-[30px] gradient-text">Payments</h1>
                 <p className=" tw-m-0  tw-h-20 tw-w-0.5  sm:tw-block tw-hidden tw-bg-[#2596ef]"></p>
                 <p className="tw-text-white">
                 $EBM can be used in our ecosystem to pay for SWAP fee at Swap4Less.
-
+                $EBM can be used for in game purchases in blockchain integrated games (EBM partner games only).
                 </p>
               </div>
 
@@ -60,7 +60,7 @@ const TokenUtility = () => {
                   </h1>
                   <hr className=" sm:tw-block tw-hidden tw-m-0 tw-border-2 tw-w-44  tw-border-[#2596ef] tw-opacity-100" />
                   <p className="tw-text-white tw-pt-5">
-                  Upon starting our Eco-friendly Block Mining activities, through Stake4More, community can enjoy higher discounts and rewards for fulfilling crypto journey.
+                  Through Stake4More, community can enjoy higher discounts and rewards for fulfilling crypto journey.
 
 
 

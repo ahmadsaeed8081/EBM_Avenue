@@ -26,7 +26,7 @@ import { useSwitchChain, useAccount, useDisconnect } from "wagmi";
 //   usePrepareContractWrite,
 //   useWaitForTransaction,
 // } from "wagmi";
-import { useSimulateContract, useWriteContract } from 'wagmi'
+import { useSimulateContract, useWriteContract,useWaitForTransactionReceipt } from 'wagmi'
 import { polygon, polygonAmoy } from "wagmi/chains";
 
 
@@ -40,6 +40,7 @@ const Hero = (props) => {
   const [option, set_option] = useState("0");
   const { open, close } = useWeb3Modal()
 
+  const [count, set_count] = useState(0);
 
   // const { chain } = useNetwork()
 
@@ -78,7 +79,7 @@ const { address, isConnecting ,isDisconnected} = useAccount()
   
   const { switchChainAsync } = useSwitchChain();
   const { chainId: currentChainId } = useAccount();
-  const { writeContractAsync,writeContract, ...states } = useWriteContract();
+  const { writeContractAsync,writeContract, data:hash, ...states } = useWriteContract();
 
   useEffect(() => {
     setpercantage();
@@ -102,13 +103,14 @@ const { address, isConnecting ,isDisconnected} = useAccount()
           address: presale_address,
           functionName: "buy_token", 
           args: [
-            Convert_To_Wei(receiveAmount? Number(receiveAmount) : 0),
+            Convert_To_Wei(payAmount? Number(payAmount) : 0),
             selectedCurrency=="MATIC" ? "0" : selectedCurrency=="USDT" ? "1" :selectedCurrency=="USDC" ? "2":null,option, selectedButton=="1 Month" ? "0":"1"
           ],
           value: selectedCurrency=="MATIC"? Convert_To_Wei(payAmount ? Number(payAmount) : "0") : 0,
 
         });
 
+        set_count(1)
 
     } catch (err) {
         console.error(err);
@@ -124,7 +126,6 @@ const { address, isConnecting ,isDisconnected} = useAccount()
           functionName: "approve",
 
         }); 
-        buytoken1();
   
        } catch (err) {
         console.error(err);
@@ -276,8 +277,32 @@ const { address, isConnecting ,isDisconnected} = useAccount()
     }
 
   }
+  const { isLoading: isConfirming, isSuccess: isConfirmed} =
+  useWaitForTransactionReceipt({
+    hash,
+    
+    
+  })
+
+  useEffect(()=>{
+    if(isConfirmed)
+    {
+      // alert(count)
+      if(count==0)
+      {
+        // set_count(1)
+        buytoken1()
+
+      }
+      if(count==1)
+      {
+        set_count(0)
+
+      }
+    }
 
 
+  },[isConfirmed])
 
 
   async function buy_stake_token() {
@@ -549,7 +574,7 @@ const { address, isConnecting ,isDisconnected} = useAccount()
                           />
                           <div className=" tw-absolute tw-right-3  tw-top-2">
                             <img
-                              src={require("../../assets/images/c5.png")}
+                              src={require("../../assets/images/ebm_token_logo.png")}
                               className=" tw-w-6"
                             />
                           </div>

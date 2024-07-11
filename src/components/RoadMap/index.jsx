@@ -51,14 +51,15 @@ const RoadMap = () => {
                   "Establishing the core team and advisory board.",
                   "Conducting market research and feasibility studies.",
                   "Community benefiting business model and tokenomics.",
+                  "Smart contract Audits & KYC",
                   "Launching the presale phase to secure early investments and community support and participation.",
                 ]}
               />
               <RoadMapPhase
                 phase="Phase 2"
-                title="Infrastructure Development (2024 Q3 - Q4)"
+                title="Infrastructure Development (2024 Q3 - Q1)"
                 items={[
-                  "Marketing, DEX listings.",
+                  "Marketing, DEX, CEX listings.",
                   "Building first state-of-the-art mining facility.",
                   "Start Mining Operations.",
                   "Swap4Less - Swap at discounted rates (Users can buy coins we mine)",

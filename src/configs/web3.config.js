@@ -7,7 +7,7 @@ import { createClient } from 'viem'
 
 const projectId = process.env.REACT_APP_WC_PROJECT_ID;
 const metadata = {  
-    name: "WTL App",
+    name: "EBM Avenue",
     description: "",
     url: "https://ebmavenue.io/",
     icons: ["https://ebmavenue.io/"]
