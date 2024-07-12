@@ -5,7 +5,8 @@ import Header from "../header";
 import Counter from "../Counter";
 import VideoPlayer from "../videoPlayer";
 import Decimal from "decimal.js";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Web3 from "web3";
 import {
   usdt_address,
@@ -97,6 +98,8 @@ const { address, isConnecting ,isDisconnected} = useAccount()
     handleBSelect("3 Month")
   }, [props.curr_presale.endTime]);
 
+  const notify = () => toast("Token Purchased Successfully!");
+
 
   function setpercantage() {
     set_prog_percentage(
@@ -137,7 +140,7 @@ const { address, isConnecting ,isDisconnected} = useAccount()
           functionName: "approve",
 
         }); 
-  
+
        } catch (err) {
         console.error(err);
     }
@@ -152,7 +155,6 @@ const { address, isConnecting ,isDisconnected} = useAccount()
           functionName: "approve",
 
         }); 
-        buytoken1();
   
        } catch (err) {
         console.error(err);
@@ -326,6 +328,8 @@ const { address, isConnecting ,isDisconnected} = useAccount()
       if(count==1)
       {
         set_count(0)
+        notify();
+        props.test();
 
       }
     }
@@ -665,12 +669,12 @@ const { address, isConnecting ,isDisconnected} = useAccount()
                       <div className=" tw-flex tw-gap-3 tw-pt-2">
                       <Button
                       onClick={()=>buy_token("0")}
-                        label={"Buy Now"}
+                        label={ isConfirming&& option=="0"? ("Processing..."): ("Buy & Claim") }
                         className={"  tw-py-1 tw-w-full"}
                       />
                       <Button
                         onClick={()=>buy_token("1")}
-                        label={"Buy & Stake"}
+                        label={ isConfirming && option=="1" ? ("Processing..."): ("Buy & Stake") }
                         className={"  tw-py-1 tw-w-full"}
                       />
                     </div>
@@ -712,6 +716,8 @@ const { address, isConnecting ,isDisconnected} = useAccount()
       </div>
 
       <div></div>
+      <ToastContainer />
+
     </div>
   );
 };

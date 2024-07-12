@@ -6,6 +6,8 @@ import Footer from "../../components/footer";
 import StakingCounter from "../../components/StakingCounter";
 import Tabs from "../../components/Tabs";
 import Web3 from "web3";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import {
   token_abi, 
@@ -62,6 +64,7 @@ const Staking = (props) => {
   const [count, set_count] = useState(0);
 
   const { open, close } = useWeb3Modal()
+  const [option, set_option] = useState("0");
 
 
   const [isOpen4, setIsOpen4] = useState(false);
@@ -69,6 +72,7 @@ const Staking = (props) => {
   const dropdownRef4 = useRef(null);
 
 
+  const notify = () => toast("Transaction Successfull!");
 
 
   const handleToggle = () => {
@@ -233,6 +237,9 @@ useWaitForTransactionReceipt({
   }  
 
   async function stake1() {
+
+    set_option(1)
+
     try {
         const tx = await writeContractAsync({
           abi: staking_abi,
@@ -252,6 +259,8 @@ useWaitForTransactionReceipt({
 }
 
 async function unstake1() {
+  set_option(2)
+
   try {
       const tx = await writeContractAsync({
         abi: staking_abi,
@@ -272,6 +281,8 @@ async function unstake1() {
 
 
 async function claim1() {
+  set_option(3)
+
   try {
       const tx = await writeContractAsync({
         abi: staking_abi,
@@ -303,7 +314,8 @@ useEffect(()=>{
     if(count==1)
     {
       set_count(0)
-
+      notify()
+      props.test();
     }
   }
 
@@ -534,7 +546,8 @@ useEffect(()=>{
 
                 <Button onClick={open} label={"Connect Wallet"} className={"tw-w-full"} />
                 :                
-                <Button onClick={stake} label={"Stake"} className={"tw-w-full"} />
+                <Button onClick={stake} label={ isConfirming && option=="1" ? ("Processing..."): ("Stake") }
+                className={"tw-w-full"} />
 
 
               }
@@ -614,7 +627,7 @@ useEffect(()=>{
 
                   <Button onClick={open} label={"Connect Wallet"} className={"tw-w-full"} />
                   :                
-                  <Button onClick={unstake} label={"Unstake"} className={"tw-w-full"} />
+                  <Button onClick={unstake} label={ isConfirming && option=="2" ? ("Processing..."): ("Unstake") } className={"tw-w-full"} />
 
 
                   }
@@ -700,7 +713,7 @@ useEffect(()=>{
 
               <Button onClick={open} label={"Connect Wallet"} className={"tw-w-full"} />
               :                
-              <Button onClick={claim} label={"Claim"} className={"tw-w-full"} />
+              <Button onClick={claim} label={ isConfirming && option=="3" ? ("Processing..."): ("Claim") }  className={"tw-w-full"} />
 
 
               }
@@ -726,6 +739,8 @@ useEffect(()=>{
         </div>
       </div>
       <Footer />
+      <ToastContainer />
+
     </div>
   );
 };
