@@ -615,8 +615,8 @@ const { address, isConnecting ,isDisconnected} = useAccount()
                       </div>
                     </div>
                     <div className=" tw-flex tw-items-center tw-justify-between tw-py-5">
-                      <p className=" tw-m-0 tw-text-white  sm:tw-text-base tw-text-sm tw-font-poppins">
-                        Choose Staking Period
+                      <p className=" tw-m-0 tw-text-white  sm:tw-text-base tw-text-sm tw-font-poppins" style={{ fontSize:"13px" }}>
+                        Choose Staking Period (ROI):
                       </p>
 
                       <div className=" tw-flex tw-gap-3">
@@ -646,8 +646,8 @@ const { address, isConnecting ,isDisconnected} = useAccount()
                     </div>
 
                     <div className=" tw-flex tw-justify-between tw-items-center">
-                      <p className=" tw-m-0 tw-font-poppins sm:tw-text-base tw-text-md tw-text-white">
-                        Token After Staking Period:
+                      <p className=" tw-m-0 tw-font-poppins sm:tw-text-base tw-text-md tw-text-white" style={{ fontSize:"13px" }} >
+                        Tokens after staking period:
                       </p>
                       <p className=" tw-m-0 tw-text-white tw-font-poppins">
                       {Number(rewardAmount)} $EBM

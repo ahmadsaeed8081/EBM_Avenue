@@ -463,7 +463,7 @@ useEffect(()=>{
             </div>
 
             <div className="tw-flex p-4 tw-border-b tw-justify-between tw-items-center">
-              <p className="tw-m-0 tw-text-white tw-font-semibold">APR:</p>
+              <p className="tw-m-0 tw-text-white tw-font-semibold">ROI:</p>
               <p className="tw-m-0 tw-text-white">{selectedOption.APR} </p>
             </div>
 
@@ -506,7 +506,7 @@ useEffect(()=>{
                     <p className="tw-font-medium tw-text-white">
                       Select Amount:
                     </p>
-                    <p className="tw-text-white tw-text-sm">Balance : {props.EBMBalance>0?(Number(props.EBMBalance)/10**18):0}  $EBM</p>
+                    <p className="tw-text-white tw-text-sm">Balance : {props.EBMBalance>0?(Number(props.EBMBalance)/10**18).toFixed(2):0}  $EBM</p>
                   </div>
                   <div
                     className="tw-relative tw-w-full tw-inline-block"
