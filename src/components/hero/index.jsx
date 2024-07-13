@@ -96,6 +96,7 @@ const { address, isConnecting ,isDisconnected} = useAccount()
   useEffect(() => {
     setpercantage();
     handleBSelect("3 Month")
+    onPay(0);
   }, [props.curr_presale.endTime]);
 
   const notify = () => toast("Token Purchased Successfully!");
@@ -329,7 +330,12 @@ const { address, isConnecting ,isDisconnected} = useAccount()
       {
         set_count(0)
         notify();
+        set_payAmount(0)
+        set_receiveAmount(0)
+        set_rewardAmount(0)
         props.test();
+
+
 
       }
     }
@@ -628,7 +634,7 @@ const { address, isConnecting ,isDisconnected} = useAccount()
                         >
                           1 Month{" "}
                           <span className=" text-xs tw-bg-button-gradient  tw-text-[9px] tw-rounded-md tw-text-white tw-py-1 tw-px-2 ">
-                            40%
+                            4%
                           </span>{" "}
                         </button>
                         <button
@@ -639,7 +645,7 @@ const { address, isConnecting ,isDisconnected} = useAccount()
                         >
                           3 Month{" "}
                           <span className=" text-xs tw-bg-button-gradient  tw-text-[9px] tw-rounded-md tw-text-white tw-py-1 tw-px-2 ">
-                            60%
+                            15%
                           </span>{" "}
                         </button>
                       </div>
@@ -655,27 +661,33 @@ const { address, isConnecting ,isDisconnected} = useAccount()
                     </div>
                     {isDisconnected?
                     (
-                      <div className=" tw-flex tw-gap-3 tw-pt-2">
+                      <div className="tw-gap-1 tw-pt-3">
                       <Button
-                      onClick={open}
+                      onClick={() => open()}
                         label={"Connect Wallet"}
                         className={"  tw-py-1 tw-w-full"}
                       />
-                      
+                    <p className=" tw-text-white tw-text-center tw-pt-2 tw-font-poppins tw-font-semibold tw-text-sm" >For best experience use dApp browser</p>
+
                     </div>
 
                     ):(
 
-                      <div className=" tw-flex tw-gap-3 tw-pt-2">
+                      <div className=" sm:tw-flex tw-gap-3 tw-pt-2" >
                       <Button
                       onClick={()=>buy_token("0")}
                         label={ isConfirming&& option=="0"? ("Processing..."): ("Buy & Claim") }
-                        className={"  tw-py-1 tw-w-full"}
+                        className={"tw-my-3  tw-py-1 tw-w-full"  } 
                       />
                       <Button
                         onClick={()=>buy_token("1")}
                         label={ isConfirming && option=="1" ? ("Processing..."): ("Buy & Stake") }
-                        className={"  tw-py-1 tw-w-full"}
+                        className={" tw-my-3 tw-py-1 tw-w-full"} 
+                      />
+                      <Button
+                      onClick={() => open()}
+                        label={"Disconnnect"}
+                        className={" tw-my-3 tw-py-1 tw-w-full"}
                       />
                     </div>
 
@@ -697,6 +709,8 @@ const { address, isConnecting ,isDisconnected} = useAccount()
                     </div> */}
 
                     <div className=" tw-text-center  tw-pt-8">
+                    {/* <p className=" tw-text-white  tw-font-poppins tw-font-semibold tw-text-sm" >For best experience use dApp browser</p> */}
+
                       <h1 className=" tw-text-white  tw-font-poppins tw-font-semibold tw-text-sm">
                         Launch On
                         <span className="gradient-text"> UniSwap </span>

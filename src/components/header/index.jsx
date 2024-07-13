@@ -43,7 +43,7 @@ const Header = () => {
 
 
   return (
-    <nav className=" tw-top-0 tw-relative tw-z-20">
+    <nav className=" sticky top-0 Fixed tw-top-0 tw-relative tw-z-20">
       <div className="tw-flex tw-items-center tw-font-medium tw-h-32 container tw-mx-auto tw-justify-between">
         <div className="">
           <img
@@ -157,7 +157,7 @@ const Header = () => {
 
         {/* Mobile nav */}
         <div
-          className={`
+          className={` 
             lg:tw-hidden   tw-bg-black  tw-bg-cover  tw-bg-Hero tw-fixed tw-w-full tw-top-0 tw-overflow-y-auto tw-bottom-0 tw-leading-10 tw-py-10 
             tw-duration-500 ${open1 ? "tw-left-0" : "tw-left-[-100%]"}
           `}

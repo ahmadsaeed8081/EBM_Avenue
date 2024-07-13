@@ -28,6 +28,7 @@ import { useSwitchChain, useAccount, useDisconnect } from "wagmi";
 // } from "wagmi";
 import { useSimulateContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'
 import { polygon, polygonAmoy } from "wagmi/chains";
+import { tab } from "@testing-library/user-event/dist/tab";
 
 
 const Staking = (props) => {
@@ -44,9 +45,10 @@ const Staking = (props) => {
 
 
 
-  const options = [{value:"0", title:"30 days", APR : "40%" }, {value:"1",title:"90 days", APR : "60%" }];
+  const options = [{value:"0", title:"30 days", APR : "4%" }, {value:"1",title:"90 days", APR : "15%" }];
 
 
+  const [activeTab, setActiveTab] = useState("Stake");
 
 
   const [isOpen, setIsOpen] = useState(false);
@@ -455,6 +457,7 @@ useEffect(()=>{
       content: (
         <>
           <div className="tw-border tw-border-[#00F0FF] tw-rounded-md">
+            
             <div className="tw-flex px-4 tw-py-2 tw-border-b tw-justify-between tw-items-center">
               <img src={require("../../assets/images/c5.png")} />
               <p className="tw-m-0 tw-text-white tw-text-2xl tw-font-bold">
@@ -730,10 +733,47 @@ useEffect(()=>{
       <Header />
 
       <div className="container tw-py-24">
+        {
+          activeTab=="Stake"?
+          (
+                  <div className=" tw-text-center">
+
+                      <h1 className=" tw-text-white  tw-font-poppins tw-font-semibold tw-text-2xl">
+                        Staking is available durng presale Perios only
+                        
+                      </h1>
+                    </div>
+          ):(
+            activeTab=="Unstake"?
+            (
+                    <div className=" tw-text-center">
+  
+                        <h1 className=" tw-text-white  tw-font-poppins tw-font-semibold tw-text-2xl">
+                          Unstake Anytime
+                          
+                        </h1>
+                      </div>
+            ):(
+              activeTab=="Reward"?
+              (
+                      <div className=" tw-text-center">
+    
+                          <h1 className=" tw-text-white  tw-font-poppins tw-font-semibold tw-text-2xl">
+                            Rewards can claimed anytime
+                            
+                          </h1>
+                        </div>
+              ):(null)
+            )
+          )
+
+          
+        }
+
         <div className="row tw-items-center">
           <div className="col-lg-5 col-md-8 tw-mx-auto">
             <div className="mx-auto mt-8  mb-24">
-              <Tabs tabs={tabData} defaultTab={defaultTab} />
+              <Tabs tabs={tabData} defaultTab={defaultTab} setActiveTab1={setActiveTab}/>
             </div>
           </div>
         </div>

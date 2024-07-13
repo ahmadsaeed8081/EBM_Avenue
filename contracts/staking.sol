@@ -14,9 +14,9 @@ contract EBM_Avenue_Staking
        
         address  public owner;
 
-        address  public buy_contract;
-        address Staking_token=0x9092962cfdbF63147e0DBe03CA3e39c4BFC8324E; 
-        address Reward_Token=0x9092962cfdbF63147e0DBe03CA3e39c4BFC8324E; 
+        address  public buy_contract= 0xC92A7049D952Ac0aCe82f980204e7d5A1402B39a;
+        address Staking_token= 0x9092962cfdbF63147e0DBe03CA3e39c4BFC8324E; 
+        address Reward_Token= 0x9092962cfdbF63147e0DBe03CA3e39c4BFC8324E; 
 
      mapping(address=>bool) public isUser;
 
@@ -68,15 +68,15 @@ contract EBM_Avenue_Staking
 
         constructor(){
             
-            owner=msg.sender;              //here we are setting the owner of this contract
+            owner=msg.sender;              
 
-            // details[0].timeframe=365 days;
-            // details[1].timeframe=120 days;
+            // details[0].timeframe=60 days;
+            // details[1].timeframe=90 days;
 
-            details[0].timeframe=365 minutes;
-            details[1].timeframe=120 minutes;
+            details[0].timeframe=30 minutes;
+            details[1].timeframe=90 minutes;
 
-            details[0].APR=25;
+            details[0].APR=4;
             details[1].APR=15;
 
 

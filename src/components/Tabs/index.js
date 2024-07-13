@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+// import { defaultProps } from "react-toastify/dist/components/ToastContainer";
 
-const Tabs = ({ tabs, defaultTab, className }) => {
+const Tabs = ({ tabs, defaultTab, className,setActiveTab1 }) => {
   const [activeTab, setActiveTab] = useState(defaultTab);
 
   return (
@@ -14,7 +15,7 @@ const Tabs = ({ tabs, defaultTab, className }) => {
                 ? "tw-w-full tw-text-white  tw-bg-button-gradient tw-bg-BG"
                 : " tw-border-2  tw-border-white tw-text-white tw-w-full"
             }`}
-            onClick={() => setActiveTab(tab.title)}
+            onClick={() => {setActiveTab(tab.title); setActiveTab1(tab.title) }}
           >
             {tab.title}
           </button>

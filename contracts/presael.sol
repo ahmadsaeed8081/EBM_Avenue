@@ -31,6 +31,7 @@ contract EBM_Avenue_Presale
             uint supply;
             // uint min_purchase;
             uint total_sold;
+            uint amount_raised;
 
         }
 
@@ -39,7 +40,7 @@ contract EBM_Avenue_Presale
         address payable public owner=payable(0x4e28A7871B33C8358A5A116f62696d073BEc4670);
         uint public total_soldSupply;
         uint public total_stages=3;
-
+        uint public total_raised;
 
 
 
@@ -53,7 +54,6 @@ contract EBM_Avenue_Presale
 
         uint[3] price_arr=[0.031 ether, 0.036 ether, 0.050 ether];
         uint[3] supply_arr=[16000000 ether, 14000000 ether, 10000000 ether];
-        // uint[3] minPurchase_arr=[100 ether, 100 ether, 100 ether];
 
         AggregatorV3Interface internal priceFeed = AggregatorV3Interface(0xAB594600376Ec9fD91F8e885dADF0CE036862dE0);
 
@@ -228,7 +228,8 @@ contract EBM_Avenue_Presale
                 }
 
             }
-
+            total_raised += (((presale[curr_stage].price * bought_token)/10**18)/10**12);
+            presale[curr_stage].amount_raised += (((presale[curr_stage].price * bought_token)/10**18)/10**12);
 
             return true;
         }
