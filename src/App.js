@@ -8,6 +8,7 @@ import Buy4less from './screens/buy4less';
 import Stake4pie from './screens/Stake4pie';
 import Staking from './screens/Staking';
 import React, { useEffect, useState } from "react";
+import OurVission from './screens/overVission';
 
 
 
@@ -198,6 +199,8 @@ useEffect(()=>{
       <Route path='/'  element={<Home totalInvestment={totalInvestment} total_raised={total_raised} USDCBalance={USDCBalance}  NextStagePrice={NextStagePrice} test={test} MATICBalance={MATICBalance} EBMBalance={EBMBalance} USDTBalance={USDTBalance} curr_time={curr_time} curr_stage={curr_stage} curr_StageTime={curr_StageTime}  curr_presale={curr_presale} perTokenIn_Matic={perTokenIn_Matic} />}/>
       <Route path='/swap4less'  element={<Buy4less/>} />
       <Route path='/stake4More'  element={<Stake4pie/>} />
+      <Route path='/stake4More'  element={<Stake4pie/>} />
+      <Route path='/vision'  element={<OurVission/>} />
       <Route path='/staking'  element={<Staking totalwithdraw={totalwithdraw} totalEarning={totalEarning} allInvestments_reward = {allInvestments_reward} totalInvestment={totalInvestment} EBMBalance={EBMBalance} curr_time={curr_time} min_stake={min_stake}  allInvestments={allInvestments}  test={test} />} />
      </Routes>
     </div>

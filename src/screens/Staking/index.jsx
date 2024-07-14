@@ -317,6 +317,7 @@ useEffect(()=>{
     {
       set_count(0)
       notify()
+      setStakedAmount(0)
       props.test();
     }
   }
@@ -547,8 +548,11 @@ useEffect(()=>{
               <div>
                 {isDisconnected?
 
+                <div>
                 <Button onClick={open} label={"Connect Wallet"} className={"tw-w-full"} />
-                :                
+                <p className=" tw-text-white tw-text-center tw-pt-2  tw-font-semibold tw-text-sm" >For best experience use dApp browser</p>
+
+                  </div>                :                
                 <Button onClick={stake} label={ isConfirming && option=="1" ? ("Processing..."): ("Stake") }
                 className={"tw-w-full"} />
 
@@ -628,8 +632,11 @@ useEffect(()=>{
 
             {isDisconnected?
 
-                  <Button onClick={open} label={"Connect Wallet"} className={"tw-w-full"} />
-                  :                
+<div>
+<Button onClick={open} label={"Connect Wallet"} className={"tw-w-full"} />
+<p className=" tw-text-white tw-text-center tw-pt-2  tw-font-semibold tw-text-sm" >For best experience use dApp browser</p>
+
+  </div>                  :                
                   <Button onClick={unstake} label={ isConfirming && option=="2" ? ("Processing..."): ("Unstake") } className={"tw-w-full"} />
 
 
@@ -714,7 +721,13 @@ useEffect(()=>{
             <div>
             {isDisconnected?
 
-              <Button onClick={open} label={"Connect Wallet"} className={"tw-w-full"} />
+
+<div>
+<Button onClick={open} label={"Connect Wallet"} className={"tw-w-full"} />
+<p className=" tw-text-white tw-text-center tw-pt-2  tw-font-semibold tw-text-sm" >For best experience use dApp browser</p>
+
+  </div>
+              
               :                
               <Button onClick={claim} label={ isConfirming && option=="3" ? ("Processing..."): ("Claim") }  className={"tw-w-full"} />
 
@@ -739,7 +752,7 @@ useEffect(()=>{
                   <div className=" tw-text-center">
 
                       <h1 className=" tw-text-white  tw-font-poppins tw-font-semibold tw-text-2xl">
-                        Staking is available durng presale Perios only
+                        Staking is available durng presale Periods only
                         
                       </h1>
                     </div>
@@ -759,7 +772,7 @@ useEffect(()=>{
                       <div className=" tw-text-center">
     
                           <h1 className=" tw-text-white  tw-font-poppins tw-font-semibold tw-text-2xl">
-                            Rewards can claimed anytime
+                         Claim your rewards Anytime!
                             
                           </h1>
                         </div>

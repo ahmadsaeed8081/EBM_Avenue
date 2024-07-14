@@ -400,10 +400,11 @@ const { address, isConnecting ,isDisconnected} = useAccount()
 
   }
 
+  // <div className="tw-bg-center tw-bg-Token tw-relative tw-bg-black tw-bg-cover tw-w-full tw-h-auto">
 
 
   return (
-    <div className=" tw-bg-Hero   tw-bg-cover tw-relative tw-bg-black tw-bg-center tw-w-full tw-h-auto">
+    <div className=" tw-bg-Hero tw-bg-cover tw-relative tw-bg-black tw-bg-center tw-w-full tw-h-auto">
       <Header />
       <div className=" tw-absolute tw-top-0  tw-left-0">
         <img src={require("../../assets/images/left_image.png")} />

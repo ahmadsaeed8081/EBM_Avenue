@@ -43,7 +43,9 @@ const Header = () => {
 
 
   return (
-    <nav className=" sticky top-0 Fixed tw-top-0 tw-relative tw-z-20">
+    // <nav className="tw-top-0 tw-sticky  tw-bg-black sm:tw-bg-transparent sm:tw-relative tw-z-20 tw-w-full">
+
+    <nav className="tw-top-0 tw-sticky  sm:tw-relative tw-z-20 tw-bg-[#000000] sm:tw-bg-transparent tw-w-full">
       <div className="tw-flex tw-items-center tw-font-medium tw-h-32 container tw-mx-auto tw-justify-between">
         <div className="">
           <img
@@ -62,6 +64,15 @@ const Header = () => {
               to={"/"}
             >
               Home
+            </Link>
+          </li>
+          <li>
+            <Link
+              to={"/vision"}
+              // onClick={() => handleNavigate("/", "aboutSection")}
+              className="tw-text-white"
+            >
+              Vision
             </Link>
           </li>
           <li>
@@ -197,6 +208,17 @@ const Header = () => {
             </li>
             <li>
               <Link
+              to={"/vision"}
+              onClick={() => {
+                  setOpen1(false);
+                }}
+                className="tw-text-white"
+              >
+                Vision
+              </Link>
+            </li>
+            <li>
+              <Link
                 to={"/"}
                 onClick={() => {
                   handleNavigate("/", "aboutSection");
@@ -207,6 +229,7 @@ const Header = () => {
                 About us
               </Link>
             </li>
+
             <li>
               <Link
                 to={"/"}
