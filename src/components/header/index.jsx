@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaCar } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IoSearch } from "react-icons/io5";
@@ -18,6 +18,7 @@ import { useAccountEffect } from 'wagmi'
 const Header = () => {
   const [open1, setOpen1] = useState(false);
   const [holdersDropdownOpen, setHoldersDropdownOpen] = useState(false);
+  const [scrollBackground, setScrollBackground] = useState(false);
 
   const navigate = useNavigate();
 
@@ -39,13 +40,33 @@ const Header = () => {
   const { isConnected,isDisconnected,chain } = useAccount()
   const { address } = useAccount();
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setScrollBackground(true);
+      } else {
+        setScrollBackground(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
 
 
   return (
     // <nav className="tw-top-0 tw-sticky  tw-bg-black sm:tw-bg-transparent sm:tw-relative tw-z-20 tw-w-full">
 
-    <nav className="tw-top-0 tw-sticky  sm:tw-relative tw-z-20 tw-bg-[#000000] sm:tw-bg-transparent tw-w-full">
+    <nav
+      className={`tw-top-0 tw-w-full tw-z-20 ${
+        scrollBackground ? "tw-bg-black sm:tw-bg-transparent tw-fixed" : ""
+      } sm:tw-relative md:tw-sticky`}
+    >
+      
       <div className="tw-flex tw-items-center tw-font-medium tw-h-32 container tw-mx-auto tw-justify-between">
         <div className="">
           <img
@@ -167,12 +188,12 @@ const Header = () => {
         </div>
 
         {/* Mobile nav */}
-        <div
-          className={` 
-            lg:tw-hidden   tw-bg-black  tw-bg-cover  tw-bg-Hero tw-fixed tw-w-full tw-top-0 tw-overflow-y-auto tw-bottom-0 tw-leading-10 tw-py-10 
-            tw-duration-500 ${open1 ? "tw-left-0" : "tw-left-[-100%]"}
-          `}
-        >
+              <div
+              className={` 
+                lg:tw-hidden  tw-z-40  tw-bg-black  tw-bg-cover  tw-bg-Hero tw-fixed tw-w-full tw-top-0 tw-overflow-y-auto tw-bottom-0 tw-leading-10 tw-py-10 
+                tw-duration-500 ${open1 ? "tw-left-0" : "tw-left-[-100%]"}`
+              }
+              >
           <div className=" tw-absolute  tw-h-screen   tw-top-0 tw-right-0">
             <img
               src={require("../../assets/images/right_image.png")}
@@ -323,3 +344,4 @@ const Header = () => {
 };
 
 export default Header;
+

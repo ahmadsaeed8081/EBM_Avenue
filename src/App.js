@@ -171,20 +171,24 @@ useEffect(()=>{
     set_USDCBalance(USDCBalance);
 
     set_EBMBalance(EBMBalance);
-    set_totalInvestment(user[1])
-    set_totalwithdraw(user[2])
+    set_totalInvestment(user?user[1]:0)
+    set_totalwithdraw(user?user[2]:0)
 
     set_totalbusiness(totalbusiness)
     set_min_stake(0)
     set_totalusers(totalusers)
     set_investmentList(allInvestments);
     set_allInvestments_reward(allInvestments_reward)
-    setSelectedAmount(allInvestments[0]);
-    if(allInvestments[0])
+    // setSelectedAmount(allInvestments[0]);
+    if(allInvestments!=null)
     {
-      set_choosed_Unstake_inv(allInvestments[0][3])
-
-    }    
+      if(allInvestments[0])
+      {
+        set_choosed_Unstake_inv(allInvestments[0][3])
+  
+      }   
+    }
+ 
     set_totalReward(totalReward);
 
 

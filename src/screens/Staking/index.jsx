@@ -201,10 +201,15 @@ const [investmentList_reward, set_investmentList_reward] = useState([]);
 
 useEffect(()=>{
 
-if( props.allInvestments.length>0)
-{
-    test1()
-}
+  if(props.allInvestments)
+  {
+    if(  props.allInvestments.length>0)
+    {
+        test1()
+    }
+
+  }
+
 },[address,props.allInvestments])
 
 
@@ -752,7 +757,7 @@ useEffect(()=>{
                   <div className=" tw-text-center">
 
                       <h1 className=" tw-text-white  tw-font-poppins tw-font-semibold tw-text-2xl">
-                        Staking is available durng presale Periods only
+                        Staking is available during presale Period only
                         
                       </h1>
                     </div>

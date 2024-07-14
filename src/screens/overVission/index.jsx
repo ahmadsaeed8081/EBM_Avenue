@@ -10,12 +10,12 @@ const OurVission = () => {
 
     <div className=' tw-bg-center   tw-relative  tw-bg-black tw-bg-cover tw-w-full  tw-h-auto'>
     <Header/>
-      <div className=' container tw-py-16 tw-mx-auto '>
+      <div className=' container tw-py-16 tw-mx-auto'>
 
 
         <div  className=' row'>
             <div className='col-md-7'>
-            <h1 className=" tw-flex  tw-gap-2 tw-items-center tw-text-white  gradient-text tw-font-semibold md:tw-text-[45px] tw-text-[35px]">
+            <h1 className=" tw-flex tw-gap-2 tw-items-center tw-text-white  gradient-text tw-font-semibold md:tw-text-[45px] tw-text-[35px]">
             
              Vision  <p className=' m-0  tw-bg-[#2596EF] tw-h-[1px]  tw-w-80'></p>
           
@@ -36,22 +36,24 @@ const OurVission = () => {
         </ul>
             </div>
             <div className='col-md-5'>
-                <img src={require('../../assets/images/Union.png')} className=' tw-w-full ' style={{ height:"560px" }} />
+              <div className='' >
+              <img src={require('../../assets/images/Union.png')}    className=' tw-w-full' style={{ height:"580px" }} />
+              </div>
             </div>
         </div>
 
-        <div className=' tw-gap-4 tw-items-center tw-my-6 tw-flex tw-border-2 tw-rounded-2xl tw-p-5  tw-w-full tw-border-[#2596EF]'>
-          <div className=' tw-border-r-2 tw-border-[#2596EF]'>
+        <div className=' tw-gap-4 tw-items-center tw-my-6 sm:tw-flex tw-block tw-border-2 tw-rounded-2xl tw-p-5  tw-w-full tw-border-[#2596EF]'>
+          <div className=' sm:tw-border-r-2 tw-border-0 tw-border-[#2596EF]'>
           <div className=' tw-px-8'>
-          <img src={require('../../assets/images/third_logo.png')} className=' tw-w-80' />
+          <img src={require('../../assets/images/third_logo.png')} className=' sm:tw-w-80 tw-w-32 tw-mx-auto' />
           </div>
           </div>
-          <div className=' px-2'>
-            <p className=' tw-text-white tw-pt-2 tw-text-lg	sm:tw-text-left tw-text-center'>Our vision goes beyond classical approaches to mining; instead, we intend to enable individuals to take part in this green mining initiative and benefit through holding and staking tokens for crypto discounts and rewards. And to promote 100x crypto adoption and widen utilities we are open for business partnerships to promote crypto utility and $EBM value as the all time best crypto currency to buy.</p>
+          <div className=' sm:px-2 tw-px-0'>
+            <p className=' tw-text-white tw-pt-2 sm:tw-text-left tw-text-center  tw-text-xl'>Our vision goes beyond classical approaches to mining; instead, we intend to enable individuals to take part in this green mining initiative and benefit through holding and staking tokens for crypto discounts and rewards. And to promote 100x crypto adoption and widen utilities we are open for business partnerships to promote crypto utility and $EBM value as the all time best crypto currency to buy.</p>
           </div>
         </div>
         <ul  className=' tw-leading-8 p-0'>
-            <li>
+            <li> 
               <p className=' tw-text-white sm:tw-text-left tw-text-center'>Through partnering with other decentralized exchanges, working closely with key players in the industry and embracing regulatory clarity, we want ourselves established as one of the thought leaders in Web3 business innovation growth among others for positive changes within the world of cryptocurrencies to make EBM as the best crypto token to buy with multiple utilities.</p>
             </li>
             <li>
