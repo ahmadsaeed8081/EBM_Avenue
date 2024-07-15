@@ -50,9 +50,9 @@ contract EBM_Avenue_Presale
         address public USDC_token=0x341343568948459e5b7017eDDb05110cfA3EF699;
 
         address public EBM_token=0x9092962cfdbF63147e0DBe03CA3e39c4BFC8324E;
-        address public staking_add =0xc4daD3Cb98a427CA783Aa8106aC40BA59c888384;
+        address public staking_add =0x929B31945C857f7faBE950a336bA078E99Dc6df6;
 
-        uint[3] price_arr=[0.031 ether, 0.036 ether, 0.050 ether];
+        uint[3] price_arr=[0.062 ether, 0.072 ether, 0.1 ether];
         uint[3] supply_arr=[16000000 ether, 14000000 ether, 10000000 ether];
 
         AggregatorV3Interface internal priceFeed = AggregatorV3Interface(0xAB594600376Ec9fD91F8e885dADF0CE036862dE0);

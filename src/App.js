@@ -58,7 +58,7 @@ function App() {
   const [allInvestments, set_investmentList] = useState([]);
   const [allInvestments_reward, set_allInvestments_reward] = useState([]);
 
-  const [selectedAmount, setSelectedAmount] = useState(null);
+  const [launch, set_launch] = useState(false);
   const [total_raised, set_totalRaised] = useState([]);
   const [curr_time, set_curr_time] = useState();
   const [min_stake, set_min_stake] = useState(0);
@@ -131,6 +131,7 @@ useEffect(()=>{
     //presale
 
     let curr_stage = await presale_contract.methods.get_curr_Stage().call();    
+    let launch = await presale_contract.methods.launch_start().call();    
 
     let curr_StageTime = await presale_contract.methods.get_curr_StageTime().call();    
     let perTokenIn_Matic = await presale_contract.methods.get_MaticPrice().call();    
@@ -164,7 +165,7 @@ useEffect(()=>{
     set_curr_presale(curr_presale)
     set_perTokenIn_Matic(perTokenIn_Matic)
     set_totalRaised(totalraised)
-
+    set_launch(launch)
     set_totalEarning(totalEarning);
     set_curr_time(currTime)
     set_TokenBalance(USDTBalance);
@@ -192,7 +193,7 @@ useEffect(()=>{
     set_totalReward(totalReward);
 
 
-    // alert(EBMBalance)
+    alert(launch)
   }  
 
 
@@ -200,7 +201,7 @@ useEffect(()=>{
 
     <div className=''>
      <Routes>
-      <Route path='/'  element={<Home totalInvestment={totalInvestment} total_raised={total_raised} USDCBalance={USDCBalance}  NextStagePrice={NextStagePrice} test={test} MATICBalance={MATICBalance} EBMBalance={EBMBalance} USDTBalance={USDTBalance} curr_time={curr_time} curr_stage={curr_stage} curr_StageTime={curr_StageTime}  curr_presale={curr_presale} perTokenIn_Matic={perTokenIn_Matic} />}/>
+      <Route path='/'  element={<Home launch={launch} totalInvestment={totalInvestment} total_raised={total_raised} USDCBalance={USDCBalance}  NextStagePrice={NextStagePrice} test={test} MATICBalance={MATICBalance} EBMBalance={EBMBalance} USDTBalance={USDTBalance} curr_time={curr_time} curr_stage={curr_stage} curr_StageTime={curr_StageTime}  curr_presale={curr_presale} perTokenIn_Matic={perTokenIn_Matic} />}/>
       <Route path='/swap4less'  element={<Buy4less/>} />
       <Route path='/stake4More'  element={<Stake4pie/>} />
       <Route path='/stake4More'  element={<Stake4pie/>} />

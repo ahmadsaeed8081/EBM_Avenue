@@ -3,6 +3,8 @@ import Button from "../Button";
 import { FaArrowRight } from "react-icons/fa6";
 import Header from "../header";
 import Counter from "../Counter";
+import Counter1 from "../Temp_Counter";
+
 import VideoPlayer from "../videoPlayer";
 import Decimal from "decimal.js";
 import { ToastContainer, toast } from 'react-toastify';
@@ -449,8 +451,72 @@ const { address, isConnecting ,isDisconnected} = useAccount()
             {openVideo === true ? (
               <div className="row tw-relative">
                 <div className="col-md-10 tw-p-0 tw-mx-auto">
+                  {!props.launch?(
+                  <div className="  tw-bg-[#282E32]  tw-border-[#269FF0] tw-border-2 tw-rounded-2xl  p-5 tw-h-auto tw-bg-cover bg-hero-cut">
+                  <p className=" tw-m-0  tw-pb-2 tw-font-poppins tw-text-xl tw-text-white" style={{  fontWeight:"500" }}>
+                         Presale will start in
+                        </p>
+                    <Counter1/>
 
-                  <div className="  tw-bg-[#282E32]  tw-border-[#269FF0] tw-border-2 tw-rounded-2xl  p-4 tw-h-auto tw-bg-cover bg-hero-cut">
+                    {/* <div className="  tw-text-center tw-py-4">
+                      <p className=" tw-font-poppins tw-m-0 tw-text-white">
+                      Total Raised : ${props.total_raised ? (Number(props.total_raised)/10**6).toFixed(2):0}
+                      </p>
+                      <div className=" tw-flex tw-justify-between tw-items-center">
+                        <p className=" tw-m-0 text-xl tw-font-poppins gradient-text">
+                          Stage
+                        </p>
+                        <p className=" tw-m-0 text-xl tw-font-poppins gradient-text">
+                          Remaining
+                        </p>
+                      </div>
+
+                      <div className=" tw-flex tw-justify-between tw-items-center">
+                        <p className=" tw-m-0 text-xl  tw-font-poppins tw-text-white">
+                        {Number(props.curr_stage) + 1}
+
+                        </p>
+                        <p className=" tw-m-0 text-xl  tw-font-poppins tw-text-white">
+                        {props.curr_presale.supply? ((Number(props.curr_presale.supply) / 10 ** 18) - (Number(props.curr_presale.total_sold) / 10 ** 18)).toFixed(2): 0}
+
+                        </p>
+                      </div>
+
+                      <div className="  tw-bg-gradient tw-rounded-lg border tw-overflow-hidden tw-my-2">
+                        <div className="  tw-rounded-md  tw-bg-button-gradient tw-p-2" style={{ width: `${Number(prog_percentage)}%` }} ></div>
+                      </div>
+
+                      <div className=" tw-flex tw-justify-between tw-items-center">
+                        <p className=" tw-m-0   tw-font-poppins tw-text-sm tw-text-white">
+                          1 $EBM = {props.curr_presale.price
+                        ? Number(props.curr_presale.price) / 10 ** 18
+                        : ""}
+                        </p>
+                        <p className=" tw-m-0 tw-font-poppins   tw-text-sm tw-text-white">
+                          Next = {Number(props.NextStagePrice)
+                          ? Number(props.NextStagePrice) / 10 ** 18
+                          : ""}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="  tw-text-center tw-pb-4 tw-pt-0">
+                      <p className=" tw-font-poppins tw-m-0 tw-text-white">
+                        Your Purchased $EBM = {Number(props.EBMBalance)
+                          ? (Number(props.EBMBalance) / 10 ** 18).toFixed(2)
+                          : ""}  
+                      </p>
+                      <p className=" tw-font-poppins tw-m-0 tw-text-white">
+                        Your Staked $EBM = {Number(props.totalInvestment)
+                          ?(Number(props.totalInvestment) / 10 ** 18).toFixed(2)
+                          : ""}  
+                      </p>
+                        </div> */}
+
+
+                  </div>
+                  ):
+                  (  <div className="  tw-bg-[#282E32]  tw-border-[#269FF0] tw-border-2 tw-rounded-2xl  p-4 tw-h-auto tw-bg-cover bg-hero-cut">
                   <p className=" tw-m-0  tw-pb-2 tw-font-poppins tw-text-sm tw-text-white" style={{ color:"#0FE5FD" }}>
                          Presale Stage Ends In
                         </p>
@@ -725,6 +791,8 @@ const { address, isConnecting ,isDisconnected} = useAccount()
                       </h1>
                     </div>
                   </div>
+                  )}
+
                 </div>
               </div>
             ) : (
