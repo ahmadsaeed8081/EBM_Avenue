@@ -193,7 +193,6 @@ useEffect(()=>{
     set_totalReward(totalReward);
 
 
-    alert(launch)
   }  
 
 
