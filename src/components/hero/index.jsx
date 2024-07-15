@@ -449,7 +449,11 @@ const { address, isConnecting ,isDisconnected} = useAccount()
             {openVideo === true ? (
               <div className="row tw-relative">
                 <div className="col-md-10 tw-p-0 tw-mx-auto">
+
                   <div className="  tw-bg-[#282E32]  tw-border-[#269FF0] tw-border-2 tw-rounded-2xl  p-4 tw-h-auto tw-bg-cover bg-hero-cut">
+                  <p className=" tw-m-0  tw-pb-2 tw-font-poppins tw-text-sm tw-text-white" style={{ color:"#269FF0" }}>
+                         Presale Stage Ends In
+                        </p>
                     <Counter time={props.curr_presale.endTime ? Number(props.curr_presale.endTime) :  0}/>
 
                     <div className="  tw-text-center tw-py-4">
