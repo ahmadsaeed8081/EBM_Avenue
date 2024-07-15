@@ -8,10 +8,12 @@ const Footer = () => {
         <div className="container tw-py-10">
           <div className="row tw-items-center">
             <div className="col-md-6  md:tw-text-start  tw-text-center">
-              <img src={require("../../assets/images/footer_logo.png")} className="tw-mx-auto md:tw-mx-0" />
-              <p className=" tw-text-xl tw-text-white tw-pt-6">
+              
+              <span><img src={require("../../assets/images/footer_logo.png")} className="tw-mx-auto md:tw-mx-0" /></span>
+              <span><p className=" tw-text-xl tw-text-white tw-pt-6">
               0xeaC39580973ca566b455E5eD8e815606EA21f104
               </p>
+              </span>
             </div>
             <div className="col-md-6">
               <ul className=" tw-p-0 tw-flex md:tw-justify-end tw-justify-center tw-gap-5 tw-items-center">

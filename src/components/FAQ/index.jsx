@@ -7,7 +7,7 @@ const FAQ = () => {
           key: 1,
           title:
             "1. How many $EBM I need to be eligible in Swap4Less?",
-          data: "Through Swap4Less, $EBM holders can purchase various cryptocurrencies at discounted rates ranging from 0.1% to 10% basing on monthly average $EBM holdings.",
+          data: <p>Through Swap4Less, $EBM holders can purchase various cryptocurrencies at discounted rates ranging from 0.1% to 10% basing on monthly average $EBM holdings. For example: Holding 10 tokens will offer 0.1 % discount.<br></br><br></br> Note: This will be announced publicly on our social channels on monthly basis and also on Swap4Less DEX page.</p>,
           isOpen: false,
         },
         {
