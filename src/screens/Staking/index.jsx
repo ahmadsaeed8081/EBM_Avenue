@@ -610,8 +610,8 @@ useEffect(()=>{
                   </button>
                   {isOpen3 && (
                     <ul className="tw-absolute tw-p-0 tw-z-20 tw-bg-[#141414] tw-text-black tw-shadow-md tw-rounded-md tw-mt-2 tw-w-full">
-                      
-                      {props.allInvestments.map((item,index) => (
+                      {props.allInvestments?(
+                      props.allInvestments.map((item,index) => (
                         <li
                           // key={index}
                           onClick={() => {
@@ -624,7 +624,24 @@ useEffect(()=>{
                         >
                           {Number(item[0])/10**18}
                         </li>
-                      ))}
+                      ))
+
+                      ):(null)}
+
+                      {/* {props.allInvestments.map((item,index) => (
+                        <li
+                          // key={index}
+                          onClick={() => {
+                            handleOption3Click(item);
+                            setSelectedAmount(item);
+                            // set_choosed_Unstake_inv(Number(item[index][3]));
+                          
+                          }}
+                          className="tw-py-2 tw-px-4 tw-cursor-pointer tw-text-white hover:tw-bg-button-gradient"
+                        >
+                          {Number(item[0])/10**18}
+                        </li>
+                      ))} */}
                     </ul>
                   )}
                 </div>
@@ -698,7 +715,8 @@ useEffect(()=>{
                   </button>
                   {isOpen4 && (
                     <ul className="tw-absolute tw-p-0 tw-z-20 tw-bg-[#141414] tw-text-black tw-shadow-md tw-rounded-md tw-mt-2 tw-w-full">
-                      {props.allInvestments_reward.map((item,index) => (
+                     {props.allInvestments_reward?(
+                      props.allInvestments_reward.map((item,index) => (
                         <li
                           key={index}
                           onClick={() => handleOption4Click(item)}
@@ -707,7 +725,18 @@ useEffect(()=>{
                           {Number(item[0])/10**18}
 
                         </li>
-                      ))}
+                      ))
+                     ):(null)}
+                      {/* {props.allInvestments_reward.map((item,index) => (
+                        <li
+                          key={index}
+                          onClick={() => handleOption4Click(item)}
+                          className="tw-py-2 tw-px-4 tw-cursor-pointer tw-text-white hover:tw-bg-button-gradient"
+                        >
+                          {Number(item[0])/10**18}
+
+                        </li>
+                      ))} */}
                     </ul>
                   )}
                 </div>
