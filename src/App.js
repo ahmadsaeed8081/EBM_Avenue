@@ -192,7 +192,7 @@ useEffect(()=>{
     set_totalReward(totalReward);
 
 
-    alert(EBMBalance)
+    // alert(EBMBalance)
   }  
 
 
