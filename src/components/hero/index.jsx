@@ -458,61 +458,6 @@ const { address, isConnecting ,isDisconnected} = useAccount()
                         </p>
                     <Counter1/>
 
-                    {/* <div className="  tw-text-center tw-py-4">
-                      <p className=" tw-font-poppins tw-m-0 tw-text-white">
-                      Total Raised : ${props.total_raised ? (Number(props.total_raised)/10**6).toFixed(2):0}
-                      </p>
-                      <div className=" tw-flex tw-justify-between tw-items-center">
-                        <p className=" tw-m-0 text-xl tw-font-poppins gradient-text">
-                          Stage
-                        </p>
-                        <p className=" tw-m-0 text-xl tw-font-poppins gradient-text">
-                          Remaining
-                        </p>
-                      </div>
-
-                      <div className=" tw-flex tw-justify-between tw-items-center">
-                        <p className=" tw-m-0 text-xl  tw-font-poppins tw-text-white">
-                        {Number(props.curr_stage) + 1}
-
-                        </p>
-                        <p className=" tw-m-0 text-xl  tw-font-poppins tw-text-white">
-                        {props.curr_presale.supply? ((Number(props.curr_presale.supply) / 10 ** 18) - (Number(props.curr_presale.total_sold) / 10 ** 18)).toFixed(2): 0}
-
-                        </p>
-                      </div>
-
-                      <div className="  tw-bg-gradient tw-rounded-lg border tw-overflow-hidden tw-my-2">
-                        <div className="  tw-rounded-md  tw-bg-button-gradient tw-p-2" style={{ width: `${Number(prog_percentage)}%` }} ></div>
-                      </div>
-
-                      <div className=" tw-flex tw-justify-between tw-items-center">
-                        <p className=" tw-m-0   tw-font-poppins tw-text-sm tw-text-white">
-                          1 $EBM = {props.curr_presale.price
-                        ? Number(props.curr_presale.price) / 10 ** 18
-                        : ""}
-                        </p>
-                        <p className=" tw-m-0 tw-font-poppins   tw-text-sm tw-text-white">
-                          Next = {Number(props.NextStagePrice)
-                          ? Number(props.NextStagePrice) / 10 ** 18
-                          : ""}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="  tw-text-center tw-pb-4 tw-pt-0">
-                      <p className=" tw-font-poppins tw-m-0 tw-text-white">
-                        Your Purchased $EBM = {Number(props.EBMBalance)
-                          ? (Number(props.EBMBalance) / 10 ** 18).toFixed(2)
-                          : ""}  
-                      </p>
-                      <p className=" tw-font-poppins tw-m-0 tw-text-white">
-                        Your Staked $EBM = {Number(props.totalInvestment)
-                          ?(Number(props.totalInvestment) / 10 ** 18).toFixed(2)
-                          : ""}  
-                      </p>
-                        </div> */}
-
 
                   </div>
                   ):
