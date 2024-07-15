@@ -557,9 +557,13 @@ useEffect(()=>{
                 <Button onClick={open} label={"Connect Wallet"} className={"tw-w-full"} />
                 <p className=" tw-text-white tw-text-center tw-pt-2  tw-font-semibold tw-text-sm" >For best experience use dApp browser</p>
 
-                  </div>                :                
+                  </div>                :   
+                  <>
                 <Button onClick={stake} label={ isConfirming && option=="1" ? ("Processing..."): ("Stake") }
                 className={"tw-w-full"} />
+                <Button onClick={open} label={"Disconnect"} className={"tw-w-full tw-mt-2"} />
+                </>             
+
 
 
               }
@@ -658,8 +662,12 @@ useEffect(()=>{
 <Button onClick={open} label={"Connect Wallet"} className={"tw-w-full"} />
 <p className=" tw-text-white tw-text-center tw-pt-2  tw-font-semibold tw-text-sm" >For best experience use dApp browser</p>
 
-  </div>                  :                
-                  <Button onClick={unstake} label={ isConfirming && option=="2" ? ("Processing..."): ("Unstake") } className={"tw-w-full"} />
+  </div>                  : 
+                 <>
+                                   <Button onClick={unstake} label={ isConfirming && option=="2" ? ("Processing..."): ("Unstake") } className={"tw-w-full"} />
+                                   <Button onClick={open} label={"Disconnect"} className={"tw-w-full tw-mt-2"} />
+
+                 </>
 
 
                   }
@@ -762,8 +770,11 @@ useEffect(()=>{
 
   </div>
               
-              :                
+              : 
+              <>
               <Button onClick={claim} label={ isConfirming && option=="3" ? ("Processing..."): ("Claim") }  className={"tw-w-full"} />
+              <Button onClick={open} label={"Disconnect"} className={"tw-w-full tw-mt-2"} />
+              </>               
 
 
               }

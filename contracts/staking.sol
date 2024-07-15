@@ -179,13 +179,21 @@ contract EBM_Avenue_Staking
                     }                
                 }
                 else{
-                    depTime =user[msg.sender].investment[i].unstakeTime - user[msg.sender].investment[i].DepositTime;
+
+                    if(user[msg.sender].investment[i].unstakeTime <= user[msg.sender].investment[i].withdrawnTime)
+                    {
+                        depTime =user[msg.sender].investment[i].unstakeTime - user[msg.sender].investment[i].DepositTime;
+                    }
+                    else if(user[msg.sender].investment[i].unstakeTime > user[msg.sender].investment[i].withdrawnTime)
+                    {
+                        depTime =user[msg.sender].investment[i].withdrawnTime - user[msg.sender].investment[i].DepositTime;
+                    }                
+                    
                 }
                 depTime=depTime/per_day_divider; //1 day
                 if(depTime>0)
                 {
                      rew  =  (((user[msg.sender].investment[i].investedAmount * ((user[msg.sender].investment[i].apr) *10**18) )/ (100*10**18) )/(user[msg.sender].investment[i].timeframe));
-
 
                     totalReward += depTime * rew;
                 }
@@ -220,7 +228,15 @@ contract EBM_Avenue_Staking
                 }
                 else
                 {
-                    depTime =user[add].investment[i].unstakeTime - user[add].investment[i].DepositTime;
+                    if(user[add].investment[i].unstakeTime <= user[add].investment[i].withdrawnTime)
+                    {
+                        depTime =user[add].investment[i].unstakeTime - user[add].investment[i].DepositTime;
+                    }
+                    else if(user[add].investment[i].unstakeTime > user[add].investment[i].withdrawnTime)
+                    {
+                        depTime =user[add].investment[i].withdrawnTime - user[add].investment[i].DepositTime;
+                    }
+
                 }
                 depTime=depTime/per_day_divider; //1 day
                 if(depTime>0)
@@ -345,7 +361,7 @@ contract EBM_Avenue_Staking
 
                 temp_arr[currentIndex]=user[msg.sender].investment[i];
                 temp_arr[currentIndex].reward=getReward_perInv(i,msg.sender);
-                temp_arr[currentIndex].pending_rew=get_pending_Rew(msg.sender,i);
+                temp_arr[currentIndex].pending_rew = get_pending_Rew(msg.sender,i);
 
                 currentIndex++;
                
