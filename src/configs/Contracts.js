@@ -3,8 +3,8 @@ export const ebm_address="0x9092962cfdbF63147e0DBe03CA3e39c4BFC8324E"
 export const usdt_address="0x341343568948459e5b7017eDDb05110cfA3EF699";
 export const usdc_address="0x341343568948459e5b7017eDDb05110cfA3EF699";
 
-export const presale_address="0x86F1eC984f25DaFC7855054f80db3AaDd890d0D1";
-export const staking_address="0x741a39f8e83D26f4e143E8A2daE4Cf4c0cBc1443";
+export const presale_address="0x45b4214Cf22628c97612721C2A50D8385F1ACA8a";
+export const staking_address="0x929B31945C857f7faBE950a336bA078E99Dc6df6";
 
 
 export const staking_abi=[
