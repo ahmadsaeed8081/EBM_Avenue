@@ -561,7 +561,7 @@ useEffect(()=>{
                   <>
                 <Button onClick={stake} label={ isConfirming && option=="1" ? ("Processing..."): ("Stake") }
                 className={"tw-w-full"} />
-                <Button onClick={open} label={"Disconnect"} className={"tw-w-full tw-mt-2"} />
+                <Button onClick={() => open()} label={"Disconnect"} className={"tw-w-full tw-mt-2"} />
                 </>             
 
 
@@ -665,7 +665,7 @@ useEffect(()=>{
   </div>                  : 
                  <>
                                    <Button onClick={unstake} label={ isConfirming && option=="2" ? ("Processing..."): ("Unstake") } className={"tw-w-full"} />
-                                   <Button onClick={open} label={"Disconnect"} className={"tw-w-full tw-mt-2"} />
+                                   <Button onClick={() => open()} label={"Disconnect"} className={"tw-w-full tw-mt-2"} />
 
                  </>
 
@@ -773,7 +773,7 @@ useEffect(()=>{
               : 
               <>
               <Button onClick={claim} label={ isConfirming && option=="3" ? ("Processing..."): ("Claim") }  className={"tw-w-full"} />
-              <Button onClick={open} label={"Disconnect"} className={"tw-w-full tw-mt-2"} />
+              <Button onClick={() => open()} label={"Disconnect"} className={"tw-w-full tw-mt-2"} />
               </>               
 
 
