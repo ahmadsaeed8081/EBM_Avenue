@@ -192,7 +192,7 @@ useEffect(()=>{
     set_totalReward(totalReward);
 
 
-    console.log(curr_presale.price)
+    alert(EBMBalance)
   }  
 
 
